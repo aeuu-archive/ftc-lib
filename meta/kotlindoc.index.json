@@ -1,0 +1,740 @@
+{
+  "ownKey": "kotlindoc",
+  "childrenPages": {"io": {
+    "ownKey": "io",
+    "childrenPages": {"arct": {
+      "ownKey": "arct",
+      "childrenPages": {"ftclib": {
+        "ownKey": "ftclib",
+        "childrenPages": {
+          "robot": {
+            "ownKey": "robot",
+            "childrenPages": {
+              "HardwareMap": {
+                "ownKey": "HardwareMap",
+                "ownPages": [{
+                  "reference": {
+                    "path": "io/arct/ftclib/robot",
+                    "baseUrl": "/ftc-lib",
+                    "fileName": "HardwareMap",
+                    "extension": "html",
+                    "usePrettyUrl": true,
+                    "link": "/ftc-lib/io/arct/ftclib/robot/HardwareMap"
+                  },
+                  "description": "",
+                  "title": "HardwareMap",
+                  "content": "<p>A map of hardware devices\n_<\/p>\n<p>get\nGet a hardware device using the standard SDK.\nget\nGet a hardware Device by passing a <a href=\"http://docs.oracle.com/javase/6/docs/api/java/lang/Class.html\">Class<\/a>.\nUsing invoke(String) is strongly preferred over this method.\nUse only when invoking from Java.\nget\nAlias of invoke(String)\ninvoke\nGet a hardware Device.<\/p>\n"
+                }]
+              },
+              "Robot": {
+                "ownKey": "Robot",
+                "ownPages": [{
+                  "reference": {
+                    "path": "io/arct/ftclib/robot",
+                    "baseUrl": "/ftc-lib",
+                    "fileName": "Robot",
+                    "extension": "html",
+                    "usePrettyUrl": true,
+                    "link": "/ftc-lib/io/arct/ftclib/robot/Robot"
+                  },
+                  "description": "",
+                  "title": "Robot",
+                  "content": "<p>A hardware robot\nmap\nA HardwareMap of connected devices\ngamepad\nThe Gamepads linked to the robot<\/p>\n"
+                }]
+              }
+            },
+            "ownPages": [{
+              "reference": {
+                "path": "io/arct/ftclib",
+                "baseUrl": "/ftc-lib",
+                "fileName": "robot",
+                "extension": "html",
+                "usePrettyUrl": true,
+                "link": "/ftc-lib/io/arct/ftclib/robot"
+              },
+              "description": "",
+              "title": "io.arct.ftclib.robot",
+              "content": ""
+            }]
+          },
+          "extentions": {
+            "ownKey": "extentions",
+            "ownPages": [{
+              "reference": {
+                "path": "io/arct/ftclib",
+                "baseUrl": "/ftc-lib",
+                "fileName": "extentions",
+                "extension": "html",
+                "usePrettyUrl": true,
+                "link": "/ftc-lib/io/arct/ftclib/extentions"
+              },
+              "description": "",
+              "title": "io.arct.ftclib.extentions",
+              "content": "<p>round\nRounds a double to N decimal places\nmap<\/p>\n"
+            }]
+          },
+          "eventloop": {
+            "ownKey": "eventloop",
+            "childrenPages": {
+              "LinearOperationMode": {
+                "ownKey": "LinearOperationMode",
+                "ownPages": [{
+                  "reference": {
+                    "path": "io/arct/ftclib/eventloop",
+                    "baseUrl": "/ftc-lib",
+                    "fileName": "LinearOperationMode",
+                    "extension": "html",
+                    "usePrettyUrl": true,
+                    "link": "/ftc-lib/io/arct/ftclib/eventloop/LinearOperationMode"
+                  },
+                  "description": "",
+                  "title": "LinearOperationMode",
+                  "content": "<p>Represents an linear operation mode.<init>\nRepresents an linear operation mode.\nstarted<\/p>\n<p>stopRequested<\/p>\n<p>active<\/p>\n<p>idle<\/p>\n<p>sleep<\/p>\n<p>run\nCode to execute when the operation mode is run<\/p>\n"
+                }]
+              },
+              "OperationMode": {
+                "ownKey": "OperationMode",
+                "childrenPages": {
+                  "Bind": {
+                    "ownKey": "Bind",
+                    "ownPages": [{
+                      "reference": {
+                        "path": "io/arct/ftclib/eventloop/OperationMode",
+                        "baseUrl": "/ftc-lib",
+                        "fileName": "Bind",
+                        "extension": "html",
+                        "usePrettyUrl": true,
+                        "link": "/ftc-lib/io/arct/ftclib/eventloop/OperationMode/Bind"
+                      },
+                      "description": "",
+                      "title": "Bind",
+                      "content": "<p><init><\/p>\n<p>type<\/p>\n<p>name<\/p>\n<p>group<\/p>\n"
+                    }]
+                  },
+                  "Type": {
+                    "ownKey": "Type",
+                    "ownPages": [{
+                      "reference": {
+                        "path": "io/arct/ftclib/eventloop/OperationMode",
+                        "baseUrl": "/ftc-lib",
+                        "fileName": "Type",
+                        "extension": "html",
+                        "usePrettyUrl": true,
+                        "link": "/ftc-lib/io/arct/ftclib/eventloop/OperationMode/Type"
+                      },
+                      "description": "",
+                      "title": "Type",
+                      "content": ""
+                    }]
+                  }
+                },
+                "ownPages": [{
+                  "reference": {
+                    "path": "io/arct/ftclib/eventloop",
+                    "baseUrl": "/ftc-lib",
+                    "fileName": "OperationMode",
+                    "extension": "html",
+                    "usePrettyUrl": true,
+                    "link": "/ftc-lib/io/arct/ftclib/eventloop/OperationMode"
+                  },
+                  "description": "",
+                  "title": "OperationMode",
+                  "content": "<p>Represents an operation mode.<p>An operation mode is a program that can be executed on the robot.<\/p><p>Tag a subclass of OperationMode with either <a href=\"#\">com.qualcomm.robotcore.eventloop.opmode.TeleOp<\/a> or <a href=\"#\">com.qualcomm.robotcore.eventloop.opmode.Autonomous<\/a> to specify the category of this operation mode<\/p><init>\nRepresents an operation mode.<p>An operation mode is a program that can be executed on the robot.<\/p><p>Tag a subclass of OperationMode with either <a href=\"#\">com.qualcomm.robotcore.eventloop.opmode.TeleOp<\/a> or <a href=\"#\">com.qualcomm.robotcore.eventloop.opmode.Autonomous<\/a> to specify the category of this operation mode<\/p>\nrobot\nThe Robot associated with this operation mode\nlog\nThe Telemetry instance of this operation mode\ntime<\/p>\n<p>exit<\/p>\n<p>init\nCode to execute once when the operation mode is in the init phase\ninitLoop\nCode to loop when the operation mode is in the init phase (Optional)\nstart\nCode to execute once when the operation mode is run, before the loop begins (Optional)\nloop\nCode to loop while running\nstop\nCode to execute once when the operation mode disabled (Optional)<\/p>\n"
+                }]
+              }
+            },
+            "ownPages": [{
+              "reference": {
+                "path": "io/arct/ftclib",
+                "baseUrl": "/ftc-lib",
+                "fileName": "eventloop",
+                "extension": "html",
+                "usePrettyUrl": true,
+                "link": "/ftc-lib/io/arct/ftclib/eventloop"
+              },
+              "description": "",
+              "title": "io.arct.ftclib.eventloop",
+              "content": ""
+            }]
+          },
+          "util": {
+            "ownKey": "util",
+            "childrenPages": {
+              "Angles": {
+                "ownKey": "Angles",
+                "ownPages": [{
+                  "reference": {
+                    "path": "io/arct/ftclib/util",
+                    "baseUrl": "/ftc-lib",
+                    "fileName": "Angles",
+                    "extension": "html",
+                    "usePrettyUrl": true,
+                    "link": "/ftc-lib/io/arct/ftclib/util/Angles"
+                  },
+                  "description": "",
+                  "title": "Angles",
+                  "content": "<p>normalizeAngle<\/p>\n<p>generalAngle<\/p>\n<p>fromCoordinates<\/p>\n"
+                }]
+              },
+              "Direction": {
+                "ownKey": "Direction",
+                "ownPages": [{
+                  "reference": {
+                    "path": "io/arct/ftclib/util",
+                    "baseUrl": "/ftc-lib",
+                    "fileName": "Direction",
+                    "extension": "html",
+                    "usePrettyUrl": true,
+                    "link": "/ftc-lib/io/arct/ftclib/util/Direction"
+                  },
+                  "description": "",
+                  "title": "Direction",
+                  "content": "<p>value<\/p>\n"
+                }]
+              }
+            },
+            "ownPages": [{
+              "reference": {
+                "path": "io/arct/ftclib",
+                "baseUrl": "/ftc-lib",
+                "fileName": "util",
+                "extension": "html",
+                "usePrettyUrl": true,
+                "link": "/ftc-lib/io/arct/ftclib/util"
+              },
+              "description": "",
+              "title": "io.arct.ftclib.util",
+              "content": ""
+            }]
+          },
+          "gamepad": {
+            "ownKey": "gamepad",
+            "childrenPages": {
+              "Gamepad": {
+                "ownKey": "Gamepad",
+                "ownPages": [{
+                  "reference": {
+                    "path": "io/arct/ftclib/gamepad",
+                    "baseUrl": "/ftc-lib",
+                    "fileName": "Gamepad",
+                    "extension": "html",
+                    "usePrettyUrl": true,
+                    "link": "/ftc-lib/io/arct/ftclib/gamepad/Gamepad"
+                  },
+                  "description": "",
+                  "title": "Gamepad",
+                  "content": "<p>Represents a Gamepad\nleft\nLeft Joystick\nright\nRight Joystick\ndpad\nDPad\na\nA Button\nb\nB Button\nx\nX Button\ny\nY Button\nlb\nLeft Bumper\nrb\nRight Bumper\nlt\nRight Trigger\nrt\nRight Trigger\nback\nBack Button\nguide\nGuide Button\nstart\nStart Button<\/p>\n"
+                }]
+              },
+              "Joystick": {
+                "ownKey": "Joystick",
+                "ownPages": [{
+                  "reference": {
+                    "path": "io/arct/ftclib/gamepad",
+                    "baseUrl": "/ftc-lib",
+                    "fileName": "Joystick",
+                    "extension": "html",
+                    "usePrettyUrl": true,
+                    "link": "/ftc-lib/io/arct/ftclib/gamepad/Joystick"
+                  },
+                  "description": "",
+                  "title": "Joystick",
+                  "content": "<p>Represents a Joystick\nx\nX value (-1 to 1)\ny\nY value (-1 to 1)\nbutton\nJoystick Button<\/p>\n"
+                }]
+              },
+              "DPad": {
+                "ownKey": "DPad",
+                "ownPages": [{
+                  "reference": {
+                    "path": "io/arct/ftclib/gamepad",
+                    "baseUrl": "/ftc-lib",
+                    "fileName": "DPad",
+                    "extension": "html",
+                    "usePrettyUrl": true,
+                    "link": "/ftc-lib/io/arct/ftclib/gamepad/DPad"
+                  },
+                  "description": "",
+                  "title": "DPad",
+                  "content": "<p>Represents a DPad\nup\nUp Button\ndown\nDown Button\nleft\nLeft Button\nright\nRight Button<\/p>\n"
+                }]
+              }
+            },
+            "ownPages": [{
+              "reference": {
+                "path": "io/arct/ftclib",
+                "baseUrl": "/ftc-lib",
+                "fileName": "gamepad",
+                "extension": "html",
+                "usePrettyUrl": true,
+                "link": "/ftc-lib/io/arct/ftclib/gamepad"
+              },
+              "description": "",
+              "title": "io.arct.ftclib.gamepad",
+              "content": ""
+            }]
+          },
+          "bindings": {
+            "ownKey": "bindings",
+            "childrenPages": {
+              "LinearOpModeBinding": {
+                "ownKey": "LinearOpModeBinding",
+                "ownPages": [{
+                  "reference": {
+                    "path": "io/arct/ftclib/bindings",
+                    "baseUrl": "/ftc-lib",
+                    "fileName": "LinearOpModeBinding",
+                    "extension": "html",
+                    "usePrettyUrl": true,
+                    "link": "/ftc-lib/io/arct/ftclib/bindings/LinearOpModeBinding"
+                  },
+                  "description": "",
+                  "title": "LinearOpModeBinding",
+                  "content": "<p><init><\/p>\n<p>mode<\/p>\n<p>runOpMode<\/p>\n"
+                }]
+              },
+              "OpModeBinding": {
+                "ownKey": "OpModeBinding",
+                "ownPages": [{
+                  "reference": {
+                    "path": "io/arct/ftclib/bindings",
+                    "baseUrl": "/ftc-lib",
+                    "fileName": "OpModeBinding",
+                    "extension": "html",
+                    "usePrettyUrl": true,
+                    "link": "/ftc-lib/io/arct/ftclib/bindings/OpModeBinding"
+                  },
+                  "description": "",
+                  "title": "OpModeBinding",
+                  "content": "<p><init><\/p>\n<p>mode<\/p>\n<p>init<\/p>\n<p>init_loop<\/p>\n<p>start<\/p>\n<p>loop<\/p>\n<p>stop<\/p>\n"
+                }]
+              }
+            },
+            "ownPages": [{
+              "reference": {
+                "path": "io/arct/ftclib",
+                "baseUrl": "/ftc-lib",
+                "fileName": "bindings",
+                "extension": "html",
+                "usePrettyUrl": true,
+                "link": "/ftc-lib/io/arct/ftclib/bindings"
+              },
+              "description": "",
+              "title": "io.arct.ftclib.bindings",
+              "content": ""
+            }]
+          },
+          "telemetry": {
+            "ownKey": "telemetry",
+            "childrenPages": {"Telemetry": {
+              "ownKey": "Telemetry",
+              "ownPages": [{
+                "reference": {
+                  "path": "io/arct/ftclib/telemetry",
+                  "baseUrl": "/ftc-lib",
+                  "fileName": "Telemetry",
+                  "extension": "html",
+                  "usePrettyUrl": true,
+                  "link": "/ftc-lib/io/arct/ftclib/telemetry/Telemetry"
+                },
+                "description": "",
+                "title": "Telemetry",
+                "content": "<p>Sends information to the Driver Station\nautoClear\nAutomatic log clearing on Telemetry.update\nadd\nAdd a line to telemetry\nadd\nAdd lines to telemetry\nupdate\nUpdate/Send queued telemetry data<\/p>\n"
+              }]
+            }},
+            "ownPages": [{
+              "reference": {
+                "path": "io/arct/ftclib",
+                "baseUrl": "/ftc-lib",
+                "fileName": "telemetry",
+                "extension": "html",
+                "usePrettyUrl": true,
+                "link": "/ftc-lib/io/arct/ftclib/telemetry"
+              },
+              "description": "",
+              "title": "io.arct.ftclib.telemetry",
+              "content": ""
+            }]
+          },
+          "drive": {
+            "ownKey": "drive",
+            "childrenPages": {
+              "HolonomicDrive": {
+                "ownKey": "HolonomicDrive",
+                "ownPages": [{
+                  "reference": {
+                    "path": "io/arct/ftclib/drive",
+                    "baseUrl": "/ftc-lib",
+                    "fileName": "HolonomicDrive",
+                    "extension": "html",
+                    "usePrettyUrl": true,
+                    "link": "/ftc-lib/io/arct/ftclib/drive/HolonomicDrive"
+                  },
+                  "description": "",
+                  "title": "HolonomicDrive",
+                  "content": "<p>A drive controller for a robot using holonomic drive<init>\nA drive controller for a robot using holonomic drive<\/p>\n<p>move<\/p>\n<p>rotate<\/p>\n<p>gamepad<\/p>\n"
+                }]
+              },
+              "MecanumDrive": {
+                "ownKey": "MecanumDrive",
+                "ownPages": [{
+                  "reference": {
+                    "path": "io/arct/ftclib/drive",
+                    "baseUrl": "/ftc-lib",
+                    "fileName": "MecanumDrive",
+                    "extension": "html",
+                    "usePrettyUrl": true,
+                    "link": "/ftc-lib/io/arct/ftclib/drive/MecanumDrive"
+                  },
+                  "description": "",
+                  "title": "MecanumDrive",
+                  "content": "<p><init><\/p>\n<p>move\nProgrammatically move the robot\nrotate\nProgrammatically rotate the robot\ngamepad<\/p>\n"
+                }]
+              },
+              "Drive": {
+                "ownKey": "Drive",
+                "ownPages": [{
+                  "reference": {
+                    "path": "io/arct/ftclib/drive",
+                    "baseUrl": "/ftc-lib",
+                    "fileName": "Drive",
+                    "extension": "html",
+                    "usePrettyUrl": true,
+                    "link": "/ftc-lib/io/arct/ftclib/drive/Drive"
+                  },
+                  "description": "",
+                  "title": "Drive",
+                  "content": "<p>A controller that controls robot movement<init>\nA controller that controls robot movement\nrobot\nThe robot this controller controls\nmove\nProgrammatically move the robot\nmove<\/p>\n<p>rotate\nProgrammatically rotate the robot\nstop<\/p>\n<p>gamepad<\/p>\n"
+                }]
+              }
+            },
+            "ownPages": [{
+              "reference": {
+                "path": "io/arct/ftclib",
+                "baseUrl": "/ftc-lib",
+                "fileName": "drive",
+                "extension": "html",
+                "usePrettyUrl": true,
+                "link": "/ftc-lib/io/arct/ftclib/drive"
+              },
+              "description": "",
+              "title": "io.arct.ftclib.drive",
+              "content": ""
+            }]
+          },
+          "exceptions": {
+            "ownKey": "exceptions",
+            "childrenPages": {"CouldNotFindDeviceException": {
+              "ownKey": "CouldNotFindDeviceException",
+              "ownPages": [{
+                "reference": {
+                  "path": "io/arct/ftclib/exceptions",
+                  "baseUrl": "/ftc-lib",
+                  "fileName": "CouldNotFindDeviceException",
+                  "extension": "html",
+                  "usePrettyUrl": true,
+                  "link": "/ftc-lib/io/arct/ftclib/exceptions/CouldNotFindDeviceException"
+                },
+                "description": "",
+                "title": "CouldNotFindDeviceException",
+                "content": "<p><init><\/p>\n"
+              }]
+            }},
+            "ownPages": [{
+              "reference": {
+                "path": "io/arct/ftclib",
+                "baseUrl": "/ftc-lib",
+                "fileName": "exceptions",
+                "extension": "html",
+                "usePrettyUrl": true,
+                "link": "/ftc-lib/io/arct/ftclib/exceptions"
+              },
+              "description": "",
+              "title": "io.arct.ftclib.exceptions",
+              "content": ""
+            }]
+          },
+          "hardware": {
+            "ownKey": "hardware",
+            "childrenPages": {
+              "motor": {
+                "ownKey": "motor",
+                "childrenPages": {
+                  "BasicMotor": {
+                    "ownKey": "BasicMotor",
+                    "childrenPages": {"Direction": {
+                      "ownKey": "Direction",
+                      "ownPages": [{
+                        "reference": {
+                          "path": "io/arct/ftclib/hardware/motor/BasicMotor",
+                          "baseUrl": "/ftc-lib",
+                          "fileName": "Direction",
+                          "extension": "html",
+                          "usePrettyUrl": true,
+                          "link": "/ftc-lib/io/arct/ftclib/hardware/motor/BasicMotor/Direction"
+                        },
+                        "description": "",
+                        "title": "Direction",
+                        "content": "<p>inverse<\/p>\n"
+                      }]
+                    }},
+                    "ownPages": [{
+                      "reference": {
+                        "path": "io/arct/ftclib/hardware/motor",
+                        "baseUrl": "/ftc-lib",
+                        "fileName": "BasicMotor",
+                        "extension": "html",
+                        "usePrettyUrl": true,
+                        "link": "/ftc-lib/io/arct/ftclib/hardware/motor/BasicMotor"
+                      },
+                      "description": "",
+                      "title": "BasicMotor",
+                      "content": "<p>direction<\/p>\n<p>power<\/p>\n"
+                    }]
+                  },
+                  "Motor": {
+                    "ownKey": "Motor",
+                    "childrenPages": {
+                      "Mode": {
+                        "ownKey": "Mode",
+                        "ownPages": [{
+                          "reference": {
+                            "path": "io/arct/ftclib/hardware/motor/Motor",
+                            "baseUrl": "/ftc-lib",
+                            "fileName": "Mode",
+                            "extension": "html",
+                            "usePrettyUrl": true,
+                            "link": "/ftc-lib/io/arct/ftclib/hardware/motor/Motor/Mode"
+                          },
+                          "description": "",
+                          "title": "Mode",
+                          "content": ""
+                        }]
+                      },
+                      "ZeroPowerBehavior": {
+                        "ownKey": "ZeroPowerBehavior",
+                        "ownPages": [{
+                          "reference": {
+                            "path": "io/arct/ftclib/hardware/motor/Motor",
+                            "baseUrl": "/ftc-lib",
+                            "fileName": "ZeroPowerBehavior",
+                            "extension": "html",
+                            "usePrettyUrl": true,
+                            "link": "/ftc-lib/io/arct/ftclib/hardware/motor/Motor/ZeroPowerBehavior"
+                          },
+                          "description": "",
+                          "title": "ZeroPowerBehavior",
+                          "content": "<p>The behavior of a motor when a power of zero is applied<\/p>\n"
+                        }]
+                      }
+                    },
+                    "ownPages": [{
+                      "reference": {
+                        "path": "io/arct/ftclib/hardware/motor",
+                        "baseUrl": "/ftc-lib",
+                        "fileName": "Motor",
+                        "extension": "html",
+                        "usePrettyUrl": true,
+                        "link": "/ftc-lib/io/arct/ftclib/hardware/motor/Motor"
+                      },
+                      "description": "",
+                      "title": "Motor",
+                      "content": "<p>A hardware DC Motor\nbusy\nIs the motor currently busy\ncontroller<\/p>\n<p>extended<\/p>\n<p>mode<\/p>\n<p>port<\/p>\n<p>targetPosition<\/p>\n<p>targetPositionTolerance<\/p>\n<p>position\nThe current position of the motor\nvelocity<\/p>\n<p>enabled<\/p>\n<p>zeroPower\nThe ZeroPowerBehavior of the motor when a power of zero is applied\nmove\nMove the motor to a position\nmove<\/p>\n<p>stop\nStop the motor<\/p>\n"
+                    }]
+                  },
+                  "ContinuousServo": {
+                    "ownKey": "ContinuousServo",
+                    "ownPages": [{
+                      "reference": {
+                        "path": "io/arct/ftclib/hardware/motor",
+                        "baseUrl": "/ftc-lib",
+                        "fileName": "ContinuousServo",
+                        "extension": "html",
+                        "usePrettyUrl": true,
+                        "link": "/ftc-lib/io/arct/ftclib/hardware/motor/ContinuousServo"
+                      },
+                      "description": "",
+                      "title": "ContinuousServo",
+                      "content": "<p>A hardware continuous rotation servo\ncontroller<\/p>\n<p>port<\/p>\n<p>move\nMove the s a particular distance<\/p>\n"
+                    }]
+                  },
+                  "Servo": {
+                    "ownKey": "Servo",
+                    "ownPages": [{
+                      "reference": {
+                        "path": "io/arct/ftclib/hardware/motor",
+                        "baseUrl": "/ftc-lib",
+                        "fileName": "Servo",
+                        "extension": "html",
+                        "usePrettyUrl": true,
+                        "link": "/ftc-lib/io/arct/ftclib/hardware/motor/Servo"
+                      },
+                      "description": "",
+                      "title": "Servo",
+                      "content": "<p>A hardware servo\ncontroller<\/p>\n<p>move\nMove the servo to a position<\/p>\n"
+                    }]
+                  }
+                },
+                "ownPages": [{
+                  "reference": {
+                    "path": "io/arct/ftclib/hardware",
+                    "baseUrl": "/ftc-lib",
+                    "fileName": "motor",
+                    "extension": "html",
+                    "usePrettyUrl": true,
+                    "link": "/ftc-lib/io/arct/ftclib/hardware/motor"
+                  },
+                  "description": "",
+                  "title": "io.arct.ftclib.hardware.motor",
+                  "content": ""
+                }]
+              },
+              "controller": {
+                "ownKey": "controller",
+                "childrenPages": {
+                  "MotorController": {
+                    "ownKey": "MotorController",
+                    "ownPages": [{
+                      "reference": {
+                        "path": "io/arct/ftclib/hardware/controller",
+                        "baseUrl": "/ftc-lib",
+                        "fileName": "MotorController",
+                        "extension": "html",
+                        "usePrettyUrl": true,
+                        "link": "/ftc-lib/io/arct/ftclib/hardware/controller/MotorController"
+                      },
+                      "description": "",
+                      "title": "MotorController",
+                      "content": ""
+                    }]
+                  },
+                  "ServoController": {
+                    "ownKey": "ServoController",
+                    "childrenPages": {"PwmStatus": {
+                      "ownKey": "PwmStatus",
+                      "ownPages": [{
+                        "reference": {
+                          "path": "io/arct/ftclib/hardware/controller/ServoController",
+                          "baseUrl": "/ftc-lib",
+                          "fileName": "PwmStatus",
+                          "extension": "html",
+                          "usePrettyUrl": true,
+                          "link": "/ftc-lib/io/arct/ftclib/hardware/controller/ServoController/PwmStatus"
+                        },
+                        "description": "",
+                        "title": "PwmStatus",
+                        "content": ""
+                      }]
+                    }},
+                    "ownPages": [{
+                      "reference": {
+                        "path": "io/arct/ftclib/hardware/controller",
+                        "baseUrl": "/ftc-lib",
+                        "fileName": "ServoController",
+                        "extension": "html",
+                        "usePrettyUrl": true,
+                        "link": "/ftc-lib/io/arct/ftclib/hardware/controller/ServoController"
+                      },
+                      "description": "",
+                      "title": "ServoController",
+                      "content": "<p>pwm<\/p>\n<p>position<\/p>\n"
+                    }]
+                  }
+                },
+                "ownPages": [{
+                  "reference": {
+                    "path": "io/arct/ftclib/hardware",
+                    "baseUrl": "/ftc-lib",
+                    "fileName": "controller",
+                    "extension": "html",
+                    "usePrettyUrl": true,
+                    "link": "/ftc-lib/io/arct/ftclib/hardware/controller"
+                  },
+                  "description": "",
+                  "title": "io.arct.ftclib.hardware.controller",
+                  "content": ""
+                }]
+              },
+              "Device": {
+                "ownKey": "Device",
+                "childrenPages": {"Manufacturer": {
+                  "ownKey": "Manufacturer",
+                  "ownPages": [{
+                    "reference": {
+                      "path": "io/arct/ftclib/hardware/Device",
+                      "baseUrl": "/ftc-lib",
+                      "fileName": "Manufacturer",
+                      "extension": "html",
+                      "usePrettyUrl": true,
+                      "link": "/ftc-lib/io/arct/ftclib/hardware/Device/Manufacturer"
+                    },
+                    "description": "",
+                    "title": "Manufacturer",
+                    "content": ""
+                  }]
+                }},
+                "ownPages": [{
+                  "reference": {
+                    "path": "io/arct/ftclib/hardware",
+                    "baseUrl": "/ftc-lib",
+                    "fileName": "Device",
+                    "extension": "html",
+                    "usePrettyUrl": true,
+                    "link": "/ftc-lib/io/arct/ftclib/hardware/Device"
+                  },
+                  "description": "",
+                  "title": "Device",
+                  "content": "<p>Represents a hardware device\nconnectionInfo\nThe connection information of the device\nname\nThe name of the device\nmanufacturer\nThe manufacturer of the device\nversion\nThe devices version number\nclose\nClose the device\nreset<\/p>\n"
+                }]
+              },
+              "sensor": {
+                "ownKey": "sensor",
+                "childrenPages": {"GyroSensor": {
+                  "ownKey": "GyroSensor",
+                  "ownPages": [{
+                    "reference": {
+                      "path": "io/arct/ftclib/hardware/sensor",
+                      "baseUrl": "/ftc-lib",
+                      "fileName": "GyroSensor",
+                      "extension": "html",
+                      "usePrettyUrl": true,
+                      "link": "/ftc-lib/io/arct/ftclib/hardware/sensor/GyroSensor"
+                    },
+                    "description": "",
+                    "title": "GyroSensor",
+                    "content": "<p>calibrating<\/p>\n<p>heading<\/p>\n<p>rotationFraction<\/p>\n<p>x<\/p>\n<p>y<\/p>\n<p>z<\/p>\n<p>calibrate<\/p>\n<p>resetZ<\/p>\n"
+                  }]
+                }},
+                "ownPages": [{
+                  "reference": {
+                    "path": "io/arct/ftclib/hardware",
+                    "baseUrl": "/ftc-lib",
+                    "fileName": "sensor",
+                    "extension": "html",
+                    "usePrettyUrl": true,
+                    "link": "/ftc-lib/io/arct/ftclib/hardware/sensor"
+                  },
+                  "description": "",
+                  "title": "io.arct.ftclib.hardware.sensor",
+                  "content": ""
+                }]
+              }
+            },
+            "ownPages": [{
+              "reference": {
+                "path": "io/arct/ftclib",
+                "baseUrl": "/ftc-lib",
+                "fileName": "hardware",
+                "extension": "html",
+                "usePrettyUrl": true,
+                "link": "/ftc-lib/io/arct/ftclib/hardware"
+              },
+              "description": "",
+              "title": "io.arct.ftclib.hardware",
+              "content": ""
+            }]
+          }
+        }
+      }}
+    }}
+  }}
+}

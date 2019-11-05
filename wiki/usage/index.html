@@ -1,0 +1,766 @@
+<!DOCTYPE HTML>
+<!--
+    Editorial by HTML5 UP
+    html5up.net | @ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+
+
+
+
+<meta charset="utf-8"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+<meta name="generator" content="Orchid 0.17.6"/>
+<link rel="icon" href="/ftc-lib/favicon.ico">
+
+
+<meta name="robots" content="index, follow">
+
+
+
+<title>Basic Usage</title>
+
+
+<meta name="description" content="An FTC Library for Kotlin">
+
+
+
+<link rel="prev" href="/ftc-lib/wiki/installation">
+
+
+<link rel="next" href="/ftc-lib/wiki/features">
+
+
+<script>
+    window.site = {"orchidVersion":"0.17.6","baseUrl":"/ftc-lib","environment":"debug","version":"0.9.0"};
+</script>
+
+
+
+
+
+<!-- start:debug info -->
+
+<!-- THEME -->
+<!-- Type: Editorial -->
+<!-- Class: com.eden.orchid.editorial.EditorialTheme -->
+
+<!-- PAGE -->
+<!-- Type: wiki -->
+<!-- Class: com.eden.orchid.wiki.pages.WikiPage -->
+<!-- Layout: index -->
+<!-- Resolved Layout: templates/layouts/index.peb -->
+<!-- Page Template: wiki, page -->
+<!-- Resolved Page Template:  -->
+
+<!-- RESOURCE -->
+<!-- Class: com.eden.orchid.api.resources.resource.FileResource -->
+<!-- Source Filename: wiki/usage.md -->
+
+<!-- COMPLETE PAGE CONFIGURATION -->
+<script>
+    window.allData = {"reference":{"path":"wiki","baseUrl":"/ftc-lib","fileName":"usage","extension":"html","usePrettyUrl":true,"link":"/ftc-lib/wiki/usage"},"next":{"path":"wiki","baseUrl":"/ftc-lib","fileName":"features","extension":"html","usePrettyUrl":true,"link":"/ftc-lib/wiki/features"},"previous":{"path":"wiki","baseUrl":"/ftc-lib","fileName":"installation","extension":"html","usePrettyUrl":true,"link":"/ftc-lib/wiki/installation"},"description":"","title":"Basic Usage"};
+</script>
+
+<!-- end:debug info -->
+
+
+
+<!-- start:inject styles -->
+<link rel="stylesheet" type="text/css" href="/ftc-lib/Editorial/976c602a/assets/css/editorial_main.css" />
+<link rel="stylesheet" type="text/css" href="/ftc-lib/Editorial/976c602a/assets/css/editorial_orchidCustomizations.css" />
+<link rel="stylesheet" type="text/css" href="/ftc-lib/Editorial/976c602a/assets/css/orchidSearch.css" />
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.8.4/themes/prism.min.css" />
+<!-- end:inject styles -->
+
+</head>
+<body class="is-loading">
+
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Main -->
+    <div id="main">
+        <div class="inner">
+
+            <!-- Header -->
+            
+                <header id="header">
+    <a href="/ftc-lib" class="logo">FTC Lib</a>
+    <ul class="icons">
+    
+    
+        <li>
+            <a href="https://github.com/arctfoxx/ftc-lib" class="icon fa-github">
+                <span class="label">github</span>
+            </a>
+        </li>
+    
+    
+    </ul>
+</header>
+            
+            
+            
+            
+                <section id="pageContent">
+                    <header class="major"><h2>Basic Usage</h2></header>
+                    <article>
+                        
+    <!-- start:inject components -->
+    
+        
+            
+                
+                    
+                        <h3 id="create-an-operation-mode">Create an Operation Mode</h3>
+<p>To create an operation mode, we first need to declare a <code>class</code> that extends OperationMode. We also need to define a constructor that passes an <code>OpMode</code> through to the superclass.</p>
+<pre><code class="language-kotlin">class MyOperationMode(sdk: OpMode) : OperationMode(sdk) {
+    // Our code will go here
+}
+</code></pre>
+<p>However, if you try to run this code, you will find that the operation mode is not registered to the FTC SDK EventLoop.
+There are two ways to register your operation mode.</p>
+<h3 id="registering-an-operation-mode">Registering an Operation Mode</h3>
+<p>The first and highly suggested method of registering an operation mode is to use the @OperationMode.Bind annotation.
+You can choose to specify the operation mode as either Autonomous or Operated.</p>
+<pre><code class="language-kotlin">@OperationMode.Bind(OperationMode.Type.Autonomous)
+class MyOperationMode(sdk: OpMode) : OperationMode(sdk) {
+    // Our code will go here
+}
+</code></pre>
+<p>Now, if you try to run the operation mode, it will be registered by the FTC App.</p>
+<p>However, if you would not like to use the annotation processor (It requires installing the processor and using <code>kapt</code>),
+an alternative is to bind the operation mode yourself. This can be done using the OperationModeBindings class.</p>
+<pre><code class="language-kotlin">@Autonomous // Or @TeleOp for Driver Operated
+class MyOperationMode : OperationModeBindings {
+    val mode = object : OperationMode(this) {
+        // Our code will go here
+    }
+}
+</code></pre>
+<p>For the purposes of this wiki, we'll use the @OperationMode.Bind annotation.</p>
+<h3 id="putting-code-in-it">Putting Code in it!</h3>
+<p>To add our code to it, we'll need to define two methods in our operation mode. Let's look at an example.</p>
+<pre><code class="language-kotlin">@OperationMode.Bind(OperationMode.Type.Autonomous)
+class MyOperationMode(sdk: OpMode) : OperationMode(sdk) {
+    private val myMotor: Motor? = null
+
+    override fun init() {
+        myMotor = robot.map(&quot;motorName&quot;)
+    }
+
+    override fun loop() {
+        power = robot.gamepad[0].left.y
+
+        myMotor?.power = power
+    }
+}
+</code></pre>
+<p>This is a pretty basic example, but it showcases the core methods of the library. Let's break it down!</p>
+<pre><code class="language-kotlin">private val myMotor: Motor? = null
+</code></pre>
+<p>First, we'll declare a motor and set it to null as we've yet to initialize it.</p>
+<pre><code class="language-kotlin">override fun init() {
+    myMotor = robot.map(&quot;motorName&quot;)
+}
+</code></pre>
+<p>The code is executed when the INIT button is pressed, before the operation mode is run.
+Here, all we do is defined a motor with the name <code>motorName</code>.
+In the standard SDK, you will have to define the type of the device to import, <code>DcMotor::class.java</code> in this case.
+But here, as we've defined our <code>myMotor</code> variable as having type <code>Motor</code>, the type is automatically inferred for us!</p>
+<p>If you do need to specify a type, it can be passed as a type parameter in <code>Robot#map(String)</code>.</p>
+<pre><code class="language-kotlin">override fun loop() {
+    val power = robot.gamepad[0].left.y
+
+    myMotor?.power = power
+}
+</code></pre>
+<p>Finally, this is the code executed in a loop when the operation mode is running.</p>
+<p>First, we we create a variable called <code>power</code> that we set to the <code>y</code> value of the robot's first gamepad's left joystick.
+Then, we set the power of the motor we initialized earlier to <code>power</code>.</p>
+<p>If you try using this code, it will work!</p>
+<h3 id="linear-operation-modes">Linear Operation Modes</h3>
+<p>Aside from the normal operation modes, there are linear operation modes.
+Unlike the normal operation mode, the linear operation mode act's more like a program.
+It will walk through steps one after another, without looping (Obviously, you can add your own loops).</p>
+<p>This can be useful when you want to go through a specific set of steps, such as during the automated period.
+Linear operation modes also expose some extended functionality such as <code>#idle()</code>.</p>
+<p>To implement a linear operation mode, all you need to do is to override the <code>#run()</code> function.
+An example is provided below.</p>
+<pre><code class="language-kotlin">@OperationMode.Bind(OperationMode.Type.Autonomous)
+class MyOperationMode(sdk: OpMode) : LinearOperationMode(sdk) {
+    override fun run() {
+        val motor: Motor = robot.map(&quot;motorName&quot;)
+
+        motor.move(0.5, 20) // Move the motor by a distance of 20 and at 50% power
+    }
+}
+</code></pre>
+
+                    
+                
+            
+        
+            
+        
+    
+    <!-- end:inject components -->
+
+
+                    </article>
+                </section>
+            
+        </div>
+        <hr>
+
+        <!-- Page Footer -->
+        <div class="inner">
+    <footer id="footer">
+        <div class="clearfix">
+            
+                <div class="float-left">
+                    <a href="/ftc-lib/wiki/installation" class="button special small pill">
+                        <span>&larr;</span> Installation
+                    </a>
+                </div>
+            
+            
+                <div class="float-right">
+                    <a href="/ftc-lib/wiki/features" class="button special small pill">
+                        Features<span>&rarr;</span>
+                    </a>
+                </div>
+            
+        </div>
+    </footer>
+</div>
+
+    </div>
+
+    <!-- Sidebar -->
+    <div id="sidebar">
+    <div class="inner">
+
+        <!-- Search -->
+        <section id="search" class="alt">
+            <form data-orchid-search="">
+                <input type="text" name="query" id="query" placeholder="Search"/>
+            </form>
+            <div class="box" id="search-results" data-orchid-search-results style="display: none;">
+                <b>Search Results</b>
+                <ul></ul>
+            </div>
+            <div class="box" id="search-progress" data-orchid-search-progress style="display: none;">
+                <div class="loader">Loading...</div>
+            </div>
+        </section>
+
+        <!-- Menu -->
+        <nav id="siteNav" class="menu">
+            <header class="major">
+                <h2>FTC Lib</h2>
+            </header>
+            <ul class="top-level">
+                
+                    
+    
+    <li>
+        <a class="subheader">Wiki</a>
+    </li>
+    
+
+                
+                    
+    
+    <li>
+        <a href="/ftc-lib/wiki/installation">Installation</a>
+    </li>
+    
+
+                
+                    
+    
+    <li>
+        <a href="/ftc-lib/wiki/usage">Basic Usage</a>
+    </li>
+    
+
+                
+                    
+    <li>
+        <span class="opener">Features</span>
+        <ul>
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/wiki/features/robot">Robot</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/wiki/features/hardware">Using Hardware</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/wiki/features/sensors">Using Sensors</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/wiki/features/drive">Using Drivetrains</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/wiki/features/java">Java Comparability</a>
+    </li>
+    
+
+        
+        </ul>
+    </li>
+
+                
+                    
+    
+    <li>
+        <a href="/ftc-lib/changelog">Changelog</a>
+    </li>
+    
+
+                
+                    
+    
+    <li>
+        <a class="subheader">API Documentation</a>
+    </li>
+    
+
+                
+                    
+    <li>
+        <span class="opener">All Packages</span>
+        <ul>
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/bindings">io.arct.ftclib.bindings</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/drive">io.arct.ftclib.drive</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/eventloop">io.arct.ftclib.eventloop</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/exceptions">io.arct.ftclib.exceptions</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/extentions">io.arct.ftclib.extentions</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/gamepad">io.arct.ftclib.gamepad</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/hardware">io.arct.ftclib.hardware</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/hardware/controller">io.arct.ftclib.hardware.controller</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/hardware/motor">io.arct.ftclib.hardware.motor</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/hardware/sensor">io.arct.ftclib.hardware.sensor</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/robot">io.arct.ftclib.robot</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/telemetry">io.arct.ftclib.telemetry</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/util">io.arct.ftclib.util</a>
+    </li>
+    
+
+        
+        </ul>
+    </li>
+
+                
+                    
+    <li>
+        <span class="opener">All Classes</span>
+        <ul>
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/util/Angles">Angles</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/hardware/motor/BasicMotor">BasicMotor</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/eventloop/OperationMode/Bind">Bind</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/hardware/motor/ContinuousServo">ContinuousServo</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/exceptions/CouldNotFindDeviceException">CouldNotFindDeviceException</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/gamepad/DPad">DPad</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/hardware/Device">Device</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/hardware/motor/BasicMotor/Direction">Direction</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/util/Direction">Direction</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/drive/Drive">Drive</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/gamepad/Gamepad">Gamepad</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/hardware/sensor/GyroSensor">GyroSensor</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/robot/HardwareMap">HardwareMap</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/drive/HolonomicDrive">HolonomicDrive</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/gamepad/Joystick">Joystick</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/bindings/LinearOpModeBinding">LinearOpModeBinding</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/eventloop/LinearOperationMode">LinearOperationMode</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/hardware/Device/Manufacturer">Manufacturer</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/drive/MecanumDrive">MecanumDrive</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/hardware/motor/Motor/Mode">Mode</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/hardware/motor/Motor">Motor</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/hardware/controller/MotorController">MotorController</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/bindings/OpModeBinding">OpModeBinding</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/eventloop/OperationMode">OperationMode</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/hardware/controller/ServoController/PwmStatus">PwmStatus</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/robot/Robot">Robot</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/hardware/motor/Servo">Servo</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/hardware/controller/ServoController">ServoController</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/telemetry/Telemetry">Telemetry</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/eventloop/OperationMode/Type">Type</a>
+    </li>
+    
+
+        
+            
+    
+    <li>
+        <a href="/ftc-lib/io/arct/ftclib/hardware/motor/Motor/ZeroPowerBehavior">ZeroPowerBehavior</a>
+    </li>
+    
+
+        
+        </ul>
+    </li>
+
+                
+            </ul>
+        </nav>
+        
+
+        <!-- Section -->
+        <section>
+            <p class="text-center">
+                Currently 0.9.0. Created with <a href="https://orchid.netlify.com">Orchid </a> and <b>Orchid Editorial Theme</b>.
+            </p>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <p class="copyright text-center">&copy; FTC Lib. All rights reserved.<br>Design by <a href="https://html5up.net">HTML5 UP</a></p>
+        </footer>
+
+    </div>
+</div>
+
+</div>
+
+<!-- start:inject scripts -->
+<script  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script  src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
+<script  src="/ftc-lib/Editorial/976c602a/assets/js/editorial_util.js"></script>
+<script  src="/ftc-lib/Editorial/976c602a/assets/js/editorial_main.js"></script>
+<script  src="/ftc-lib/Editorial/976c602a/assets/js/editorial_orchidCustomizations.js"></script>
+<script  src="https://unpkg.com/lunr/lunr.js"></script>
+<script  src="/ftc-lib/Editorial/976c602a/assets/js/orchidSearch.js"></script>
+<script  src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.8.4/prism.min.js"></script>
+<script  src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.8.4/components/prism-java.min.js"></script>
+<script  src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.8.4/components/prism-kotlin.min.js"></script>
+<script  src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.8.4/components/prism-yaml.min.js"></script>
+<script  src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.8.4/components/prism-groovy.min.js"></script>
+<!-- end:inject scripts -->
+
+</body>
+</html>

@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/bindings</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/bindings/LinearOpModeBinding</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/bindings/OpModeBinding</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/drive</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/drive/Drive</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/drive/HolonomicDrive</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/drive/MecanumDrive</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/eventloop</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/eventloop/LinearOperationMode</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/eventloop/OperationMode</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/eventloop/OperationMode/Bind</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/eventloop/OperationMode/Type</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/exceptions</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/exceptions/CouldNotFindDeviceException</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/gamepad</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/gamepad/DPad</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/gamepad/Gamepad</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/gamepad/Joystick</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/hardware</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/hardware/controller</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/hardware/controller/MotorController</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/hardware/controller/ServoController</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/hardware/controller/ServoController/PwmStatus</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/hardware/Device</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/hardware/Device/Manufacturer</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/hardware/motor</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/hardware/motor/BasicMotor</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/hardware/motor/BasicMotor/Direction</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/hardware/motor/ContinuousServo</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/hardware/motor/Motor</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/hardware/motor/Motor/Mode</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/hardware/motor/Motor/ZeroPowerBehavior</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/hardware/motor/Servo</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/hardware/sensor</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/hardware/sensor/GyroSensor</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/robot</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/robot/HardwareMap</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/robot/Robot</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/telemetry</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/telemetry/Telemetry</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/util</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/util/Angles</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/util/Direction</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    <url>
+        <loc>/ftc-lib/io/arct/ftclib/extentions</loc>
+        <lastmod>2019-11-04</lastmod>
+        <priority>0.0</priority>
+        
+    </url>
+    
+</urlset>

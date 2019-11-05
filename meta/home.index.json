@@ -1,0 +1,31 @@
+{
+  "ownKey": "home",
+  "ownPages": [
+    {
+      "reference": {
+        "path": "",
+        "baseUrl": "/ftc-lib",
+        "fileName": "",
+        "extension": "html",
+        "usePrettyUrl": true,
+        "link": "/ftc-lib"
+      },
+      "description": "",
+      "title": "FTC Lib",
+      "content": ""
+    },
+    {
+      "reference": {
+        "path": "",
+        "baseUrl": "/ftc-lib",
+        "fileName": "404",
+        "extension": "html",
+        "usePrettyUrl": false,
+        "link": "/ftc-lib/404.html"
+      },
+      "description": "",
+      "title": "FTC Lib",
+      "content": ""
+    }
+  ]
+}

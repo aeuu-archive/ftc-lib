@@ -1,0 +1,263 @@
+{
+  "ownKey": "wiki",
+  "childrenPages": {"wiki": {
+    "ownKey": "wiki",
+    "childrenPages": {
+      "features": {
+        "ownKey": "features",
+        "childrenPages": {
+          "robot": {
+            "ownKey": "robot",
+            "ownPages": [{
+              "reference": {
+                "path": "wiki/features",
+                "baseUrl": "/ftc-lib",
+                "fileName": "robot",
+                "extension": "html",
+                "usePrettyUrl": true,
+                "link": "/ftc-lib/wiki/features/robot"
+              },
+              "next": {
+                "path": "wiki/features",
+                "baseUrl": "/ftc-lib",
+                "fileName": "hardware",
+                "extension": "html",
+                "usePrettyUrl": true,
+                "link": "/ftc-lib/wiki/features/hardware"
+              },
+              "previous": {
+                "path": "wiki",
+                "baseUrl": "/ftc-lib",
+                "fileName": "features",
+                "extension": "html",
+                "usePrettyUrl": true,
+                "link": "/ftc-lib/wiki/features"
+              },
+              "description": "",
+              "title": "Robot",
+              "content": ""
+            }]
+          },
+          "sensors": {
+            "ownKey": "sensors",
+            "ownPages": [{
+              "reference": {
+                "path": "wiki/features",
+                "baseUrl": "/ftc-lib",
+                "fileName": "sensors",
+                "extension": "html",
+                "usePrettyUrl": true,
+                "link": "/ftc-lib/wiki/features/sensors"
+              },
+              "next": {
+                "path": "wiki/features",
+                "baseUrl": "/ftc-lib",
+                "fileName": "drive",
+                "extension": "html",
+                "usePrettyUrl": true,
+                "link": "/ftc-lib/wiki/features/drive"
+              },
+              "previous": {
+                "path": "wiki/features",
+                "baseUrl": "/ftc-lib",
+                "fileName": "hardware",
+                "extension": "html",
+                "usePrettyUrl": true,
+                "link": "/ftc-lib/wiki/features/hardware"
+              },
+              "description": "",
+              "title": "Using Sensors",
+              "content": "<p>Sensors can be used the same way that other devices are used.<\/p>\n<pre><code class=\"language-kotlin\">val sensor: GyroSensor = robot.map(&quot;name&quot;)\n<\/code><\/pre>\n<p>Examples will be shown of sensor methods in the future.<\/p>\n"
+            }]
+          },
+          "java": {
+            "ownKey": "java",
+            "ownPages": [{
+              "reference": {
+                "path": "wiki/features",
+                "baseUrl": "/ftc-lib",
+                "fileName": "java",
+                "extension": "html",
+                "usePrettyUrl": true,
+                "link": "/ftc-lib/wiki/features/java"
+              },
+              "previous": {
+                "path": "wiki/features",
+                "baseUrl": "/ftc-lib",
+                "fileName": "drive",
+                "extension": "html",
+                "usePrettyUrl": true,
+                "link": "/ftc-lib/wiki/features/drive"
+              },
+              "description": "",
+              "title": "Java Comparability",
+              "content": "<p>Java Documentation Coming Soon.<\/p>\n"
+            }]
+          },
+          "drive": {
+            "ownKey": "drive",
+            "ownPages": [{
+              "reference": {
+                "path": "wiki/features",
+                "baseUrl": "/ftc-lib",
+                "fileName": "drive",
+                "extension": "html",
+                "usePrettyUrl": true,
+                "link": "/ftc-lib/wiki/features/drive"
+              },
+              "next": {
+                "path": "wiki/features",
+                "baseUrl": "/ftc-lib",
+                "fileName": "java",
+                "extension": "html",
+                "usePrettyUrl": true,
+                "link": "/ftc-lib/wiki/features/java"
+              },
+              "previous": {
+                "path": "wiki/features",
+                "baseUrl": "/ftc-lib",
+                "fileName": "sensors",
+                "extension": "html",
+                "usePrettyUrl": true,
+                "link": "/ftc-lib/wiki/features/sensors"
+              },
+              "description": "",
+              "title": "Using Drivetrains",
+              "content": "<p>One of the core features that FTC-Lib has is having drivetrains.<\/p>\n<p>There are built-in drivetrains, such as HolonomicDrive and MecanumDrive, that make robot movement easier.<\/p>\n<p>First, we create a mecanum drive with the four drive motors.<\/p>\n<pre><code class=\"language-kotlin\">val mecanum: Drive = MecanumDrive(listOf(&quot;drive&quot;, &quot;motors&quot;, &quot;go&quot;, &quot;here!&quot;))\n<\/code><\/pre>\n<p>To set the power of the drivetrain and go in a specific direction, we can use:<\/p>\n<pre><code class=\"language-kotlin\">mecanum.move(180, 1)\n<\/code><\/pre>\n<p>We can do the same thing with rotation:<\/p>\n<pre><code class=\"language-kotlin\">holonomic.rotate(0.5)\n<\/code><\/pre>\n<p>Now, if we want to stop the drivetrain:<\/p>\n<pre><code class=\"language-kotlin\">holonomic.stop()\n<\/code><\/pre>\n<p>But what if we want the drivetrain to only move a specific amount? We can enter the distance:<\/p>\n<pre><code class=\"language-kotlin\">holonomic.move(180, 0.25, 300)\n<\/code><\/pre>\n<p>The same thing goes for rotation as well:<\/p>\n<pre><code class=\"language-kotlin\">holonomic.rotate(0.1, 325)\n<\/code><\/pre>\n<h3 id=\"reference-code\">Reference Code<\/h3>\n<pre><code class=\"language-kotlin\">val holonomic: Drive = MecanumDrive(listOf(&quot;drive&quot;, &quot;motors&quot;, &quot;go&quot;, &quot;here!&quot;))\n\nholonomic.move(180, 1)\n\nholonomic.rotate(0.5)\n\nholonomic.stop()\n\nholonomic.move(180, 0.25, 300)\n\nholonomic.rotate(0.1, 325)\n<\/code><\/pre>\n"
+            }]
+          },
+          "hardware": {
+            "ownKey": "hardware",
+            "ownPages": [{
+              "reference": {
+                "path": "wiki/features",
+                "baseUrl": "/ftc-lib",
+                "fileName": "hardware",
+                "extension": "html",
+                "usePrettyUrl": true,
+                "link": "/ftc-lib/wiki/features/hardware"
+              },
+              "next": {
+                "path": "wiki/features",
+                "baseUrl": "/ftc-lib",
+                "fileName": "sensors",
+                "extension": "html",
+                "usePrettyUrl": true,
+                "link": "/ftc-lib/wiki/features/sensors"
+              },
+              "previous": {
+                "path": "wiki/features",
+                "baseUrl": "/ftc-lib",
+                "fileName": "robot",
+                "extension": "html",
+                "usePrettyUrl": true,
+                "link": "/ftc-lib/wiki/features/robot"
+              },
+              "description": "",
+              "title": "Using Hardware",
+              "content": "<p>There are two ways to get an instance of a hardware device using the library.\nThe first method has been shown previously, making use of type inference:<\/p>\n<pre><code class=\"language-kotlin\">val device: Motor = robot.map(&quot;name&quot;)\n<\/code><\/pre>\n<p>You can alternatively use <code>robot.map.get(String)<\/code> which does the same thing:<\/p>\n<pre><code class=\"language-kotlin\">val device: Motor = robot.map(&quot;name&quot;)\n<\/code><\/pre>\n<p>If you're using Java, which doesn't support the <code>reified<\/code> kotlin feature, you'll have to use the following function:<\/p>\n<pre><code class=\"language-java\">Motor device = robot.map(Motor.class, &quot;name&quot;);\n<\/code><\/pre>\n<p>But you can also use it in Kotlin as well:<\/p>\n<pre><code class=\"language-kotlin\">val device = robot.map(Motor::class.java, &quot;name&quot;)\n<\/code><\/pre>\n"
+            }]
+          }
+        },
+        "ownPages": [{
+          "reference": {
+            "path": "wiki",
+            "baseUrl": "/ftc-lib",
+            "fileName": "features",
+            "extension": "html",
+            "usePrettyUrl": true,
+            "link": "/ftc-lib/wiki/features"
+          },
+          "next": {
+            "path": "wiki/features",
+            "baseUrl": "/ftc-lib",
+            "fileName": "robot",
+            "extension": "html",
+            "usePrettyUrl": true,
+            "link": "/ftc-lib/wiki/features/robot"
+          },
+          "previous": {
+            "path": "wiki",
+            "baseUrl": "/ftc-lib",
+            "fileName": "usage",
+            "extension": "html",
+            "usePrettyUrl": true,
+            "link": "/ftc-lib/wiki/usage"
+          },
+          "description": "",
+          "title": "Features",
+          "content": "<p>In the following pages, we'll showcase some of the features that the library has as well as examples.<\/p>\n<ul>\n<li><a href=\"features/robot.md\">Robot<\/a><\/li>\n<li><a href=\"features/hardware.md\">Using Hardware<\/a><\/li>\n<li><a href=\"features/sensors.md\">Using Sensors<\/a><\/li>\n<li><a href=\"features/drive.md\">Using Drivetrains<\/a><\/li>\n<li><a href=\"features/java.md\">Java Comparability<\/a><\/li>\n<\/ul>\n"
+        }]
+      },
+      "installation": {
+        "ownKey": "installation",
+        "ownPages": [{
+          "reference": {
+            "path": "wiki",
+            "baseUrl": "/ftc-lib",
+            "fileName": "installation",
+            "extension": "html",
+            "usePrettyUrl": true,
+            "link": "/ftc-lib/wiki/installation"
+          },
+          "next": {
+            "path": "wiki",
+            "baseUrl": "/ftc-lib",
+            "fileName": "usage",
+            "extension": "html",
+            "usePrettyUrl": true,
+            "link": "/ftc-lib/wiki/usage"
+          },
+          "description": "",
+          "title": "Installation",
+          "content": "<h3 id=\"basic-installation\">Basic Installation<\/h3>\n<p>Installation is simple. To install the main package via gradle, use <a href=\"https://jitpack.io\">JitPack<\/a> and add the dependency <code>com.github.arctfoxx:ftc-lib:VERSION<\/code> The annotation processor can be used using the <code>kapt<\/code> scope and the ID `com.github.arctfoxx.ftc-lib:ftc-processor:VERSION'<\/p>\n<p>Make sure you have KotlinPoet installed as well or annotation processing will fail.<\/p>\n<p>Alternatively, the prebuilt jars may be used instead of the JitPack dependency.<\/p>\n<h3 id=\"example-configurations\">Example Configurations<\/h3>\n<p>Gradle Configuration:<\/p>\n<pre><code class=\"language-groovy\">repositories {\n    maven { url 'https://jitpack.io' }\n}\n\ndependencies {\n    implementation('com.github.arctfoxx:ftc-lib:VERSION')\n    \n    kapt('com.github.arctfoxx.ftc-lib:ftc-processor:VERSION')\n}\n<\/code><\/pre>\n"
+        }]
+      },
+      "usage": {
+        "ownKey": "usage",
+        "ownPages": [{
+          "reference": {
+            "path": "wiki",
+            "baseUrl": "/ftc-lib",
+            "fileName": "usage",
+            "extension": "html",
+            "usePrettyUrl": true,
+            "link": "/ftc-lib/wiki/usage"
+          },
+          "next": {
+            "path": "wiki",
+            "baseUrl": "/ftc-lib",
+            "fileName": "features",
+            "extension": "html",
+            "usePrettyUrl": true,
+            "link": "/ftc-lib/wiki/features"
+          },
+          "previous": {
+            "path": "wiki",
+            "baseUrl": "/ftc-lib",
+            "fileName": "installation",
+            "extension": "html",
+            "usePrettyUrl": true,
+            "link": "/ftc-lib/wiki/installation"
+          },
+          "description": "",
+          "title": "Basic Usage",
+          "content": "<h3 id=\"create-an-operation-mode\">Create an Operation Mode<\/h3>\n<p>To create an operation mode, we first need to declare a <code>class<\/code> that extends OperationMode. We also need to define a constructor that passes an <code>OpMode<\/code> through to the superclass.<\/p>\n<pre><code class=\"language-kotlin\">class MyOperationMode(sdk: OpMode) : OperationMode(sdk) {\n    // Our code will go here\n}\n<\/code><\/pre>\n<p>However, if you try to run this code, you will find that the operation mode is not registered to the FTC SDK EventLoop.\nThere are two ways to register your operation mode.<\/p>\n<h3 id=\"registering-an-operation-mode\">Registering an Operation Mode<\/h3>\n<p>The first and highly suggested method of registering an operation mode is to use the @OperationMode.Bind annotation.\nYou can choose to specify the operation mode as either Autonomous or Operated.<\/p>\n<pre><code class=\"language-kotlin\">@OperationMode.Bind(OperationMode.Type.Autonomous)\nclass MyOperationMode(sdk: OpMode) : OperationMode(sdk) {\n    // Our code will go here\n}\n<\/code><\/pre>\n<p>Now, if you try to run the operation mode, it will be registered by the FTC App.<\/p>\n<p>However, if you would not like to use the annotation processor (It requires installing the processor and using <code>kapt<\/code>),\nan alternative is to bind the operation mode yourself. This can be done using the OperationModeBindings class.<\/p>\n<pre><code class=\"language-kotlin\">@Autonomous // Or @TeleOp for Driver Operated\nclass MyOperationMode : OperationModeBindings {\n    val mode = object : OperationMode(this) {\n        // Our code will go here\n    }\n}\n<\/code><\/pre>\n<p>For the purposes of this wiki, we'll use the @OperationMode.Bind annotation.<\/p>\n<h3 id=\"putting-code-in-it\">Putting Code in it!<\/h3>\n<p>To add our code to it, we'll need to define two methods in our operation mode. Let's look at an example.<\/p>\n<pre><code class=\"language-kotlin\">@OperationMode.Bind(OperationMode.Type.Autonomous)\nclass MyOperationMode(sdk: OpMode) : OperationMode(sdk) {\n    private val myMotor: Motor? = null\n\n    override fun init() {\n        myMotor = robot.map(&quot;motorName&quot;)\n    }\n\n    override fun loop() {\n        power = robot.gamepad[0].left.y\n\n        myMotor?.power = power\n    }\n}\n<\/code><\/pre>\n<p>This is a pretty basic example, but it showcases the core methods of the library. Let's break it down!<\/p>\n<pre><code class=\"language-kotlin\">private val myMotor: Motor? = null\n<\/code><\/pre>\n<p>First, we'll declare a motor and set it to null as we've yet to initialize it.<\/p>\n<pre><code class=\"language-kotlin\">override fun init() {\n    myMotor = robot.map(&quot;motorName&quot;)\n}\n<\/code><\/pre>\n<p>The code is executed when the INIT button is pressed, before the operation mode is run.\nHere, all we do is defined a motor with the name <code>motorName<\/code>.\nIn the standard SDK, you will have to define the type of the device to import, <code>DcMotor::class.java<\/code> in this case.\nBut here, as we've defined our <code>myMotor<\/code> variable as having type <code>Motor<\/code>, the type is automatically inferred for us!<\/p>\n<p>If you do need to specify a type, it can be passed as a type parameter in <code>Robot#map(String)<\/code>.<\/p>\n<pre><code class=\"language-kotlin\">override fun loop() {\n    val power = robot.gamepad[0].left.y\n\n    myMotor?.power = power\n}\n<\/code><\/pre>\n<p>Finally, this is the code executed in a loop when the operation mode is running.<\/p>\n<p>First, we we create a variable called <code>power<\/code> that we set to the <code>y<\/code> value of the robot's first gamepad's left joystick.\nThen, we set the power of the motor we initialized earlier to <code>power<\/code>.<\/p>\n<p>If you try using this code, it will work!<\/p>\n<h3 id=\"linear-operation-modes\">Linear Operation Modes<\/h3>\n<p>Aside from the normal operation modes, there are linear operation modes.\nUnlike the normal operation mode, the linear operation mode act's more like a program.\nIt will walk through steps one after another, without looping (Obviously, you can add your own loops).<\/p>\n<p>This can be useful when you want to go through a specific set of steps, such as during the automated period.\nLinear operation modes also expose some extended functionality such as <code>#idle()<\/code>.<\/p>\n<p>To implement a linear operation mode, all you need to do is to override the <code>#run()<\/code> function.\nAn example is provided below.<\/p>\n<pre><code class=\"language-kotlin\">@OperationMode.Bind(OperationMode.Type.Autonomous)\nclass MyOperationMode(sdk: OpMode) : LinearOperationMode(sdk) {\n    override fun run() {\n        val motor: Motor = robot.map(&quot;motorName&quot;)\n\n        motor.move(0.5, 20) // Move the motor by a distance of 20 and at 50% power\n    }\n}\n<\/code><\/pre>\n"
+        }]
+      }
+    },
+    "ownPages": [{
+      "reference": {
+        "path": "",
+        "baseUrl": "/ftc-lib",
+        "fileName": "wiki",
+        "extension": "html",
+        "usePrettyUrl": true,
+        "link": "/ftc-lib/wiki"
+      },
+      "description": "",
+      "title": "Wiki",
+      "content": "<html>\n <head><\/head>\n <body>\n  <ul> \n   <li><a href=\"/ftc-lib/wiki/installation\">Installation<\/a><\/li> \n   <li><a href=\"/ftc-lib/wiki/usage\">Basic Usage<\/a><\/li> \n   <li><a href=\"/ftc-lib/wiki/features\">Features<\/a> \n    <ul> \n     <li><a href=\"/ftc-lib/wiki/features/robot\">Robot<\/a><\/li> \n     <li><a href=\"/ftc-lib/wiki/features/hardware\">Using Hardware<\/a><\/li> \n     <li><a href=\"/ftc-lib/wiki/features/sensors\">Using Sensors<\/a><\/li> \n     <li><a href=\"/ftc-lib/wiki/features/drive\">Using Drivetrains<\/a><\/li> \n     <li><a href=\"/ftc-lib/wiki/features/java\">Java Comparability<\/a><\/li> \n    <\/ul> <\/li> \n  <\/ul> \n <\/body>\n<\/html>\n"
+    }]
+  }}
+}
