@@ -4,9 +4,6 @@ plugins {
     kotlin("jvm")
 }
 
-group = "io.arct"
-version = "1.0.0"
-
 repositories {
     mavenCentral()
 }
@@ -19,7 +16,7 @@ dependencies {
 
     implementation(project(":"))
 
-    api("com.squareup:kotlinpoet:1.4.2")
+    implementation("com.squareup:kotlinpoet:1.4.4")
 }
 
 tasks.withType<KotlinCompile> {

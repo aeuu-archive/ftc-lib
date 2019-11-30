@@ -1,0 +1,6 @@
+sourceDirs:
+  - '../../main/java'
+
+pages:
+  extraCss:
+    - 'assets/css/kdoc.scss'

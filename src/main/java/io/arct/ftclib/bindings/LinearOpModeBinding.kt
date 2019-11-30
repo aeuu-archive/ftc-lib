@@ -7,6 +7,8 @@ abstract class LinearOpModeBinding : LinearOpMode() {
     abstract val mode: LinearOperationMode
 
     override fun runOpMode() {
+        mode.init()
+
         waitForStart()
 
         mode.start()

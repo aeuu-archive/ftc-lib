@@ -1,0 +1,7 @@
+- type: 'pageContent'
+- type: 'prism'
+  languages:
+    - 'java'
+    - 'kotlin'
+    - 'yaml'
+    - 'groovy'

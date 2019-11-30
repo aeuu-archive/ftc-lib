@@ -16,6 +16,6 @@ object Angles {
     }
 
     fun fromCoordinates(x: Double, y: Double): Double =
-        if (x != 0.0 || y != 0.0) normalizeAngle(atan2(y, x) * (180 / Math.PI) - 90)
+        if (-x != 0.0 || y != 0.0) normalizeAngle(atan2(y, -x) * (180 / Math.PI) - 90)
         else Double.NaN
 }

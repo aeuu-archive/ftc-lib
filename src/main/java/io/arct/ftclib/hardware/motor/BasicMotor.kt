@@ -1,16 +1,13 @@
 package io.arct.ftclib.hardware.motor
 
 import com.qualcomm.robotcore.hardware.DcMotorSimple
+import io.arct.ftclib.bindings.types.SdkBasicMotor
 import io.arct.ftclib.hardware.Device
+import io.arct.ftclib.hardware.SdkDevice
 
-open class BasicMotor internal constructor(private val sdk: DcMotorSimple) : Device(sdk) {
+interface BasicMotor : Device {
     var direction: Direction
-        get() = Direction.fromSdk(sdk.direction)
-        set(v) { sdk.direction = v.sdk }
-
     var power: Double
-        get() = sdk.power
-        set(v) { sdk.power = v }
 
     enum class Direction {
         Forward,
@@ -40,7 +37,17 @@ open class BasicMotor internal constructor(private val sdk: DcMotorSimple) : Dev
         }
     }
 
-    companion object {
-        val sdk = DcMotorSimple::class.java
+    open class Impl<T : SdkBasicMotor>(sdk: T) : BasicMotor, SdkDevice<T> by SdkDevice.Impl(sdk) {
+        override var direction: Direction
+            get() = Direction.fromSdk(sdk.direction)
+            set(v) { sdk.direction = v.sdk }
+
+        override var power: Double
+            get() = sdk.power
+            set(v) { sdk.power = v }
+
+        companion object {
+            val sdk = SdkBasicMotor::class.java
+        }
     }
 }

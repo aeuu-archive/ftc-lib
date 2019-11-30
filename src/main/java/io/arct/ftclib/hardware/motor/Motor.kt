@@ -2,6 +2,7 @@ package io.arct.ftclib.hardware.motor
 
 import com.qualcomm.robotcore.hardware.DcMotor
 import com.qualcomm.robotcore.hardware.DcMotorEx
+import io.arct.ftclib.bindings.types.SdkMotor
 import io.arct.ftclib.hardware.controller.MotorController
 import io.arct.ftclib.hardware.motor.Motor.ZeroPowerBehavior
 
@@ -12,47 +13,18 @@ import io.arct.ftclib.hardware.motor.Motor.ZeroPowerBehavior
  * @property busy Is the motor currently busy
  * @property zeroPower The [ZeroPowerBehavior] of the motor when a power of zero is applied
  */
-class Motor internal constructor(private val sdk: DcMotor) : BasicMotor(sdk) {
-    private val ext: DcMotorEx? = if (extended) sdk as DcMotorEx else null
-
+interface Motor : BasicMotor {
     val busy: Boolean
-        get() = sdk.isBusy
-
-    val controller: MotorController =
-        MotorController(sdk.controller, port)
-
+    val controller: MotorController
     val extended: Boolean
-        get() = sdk is DcMotorEx
-
     var mode: Mode
-        get() = Mode.fromSdk(sdk.mode)
-        set(v) { sdk.mode = v.sdk }
-
     val port: Int
-        get() = sdk.portNumber
-
     var targetPosition: Int
-        get() = sdk.targetPosition
-        set(v) { sdk.targetPosition = v }
-
     var targetPositionTolerance: Int?
-        get() = ext?.targetPositionTolerance
-        set(v) { if (v != null) ext?.targetPositionTolerance = v }
-
     val position: Int
-        get() = sdk.currentPosition
-
     var velocity: Double?
-        get() = ext?.velocity
-        set(v) { if (v != null) ext?.velocity = v }
-
     var enabled: Boolean?
-        get() = ext?.isMotorEnabled
-        set(v) { if (v == true) ext?.setMotorEnable() else ext?.setMotorDisable() }
-
     var zeroPower: ZeroPowerBehavior
-        get() = ZeroPowerBehavior.fromSdk(sdk.zeroPowerBehavior)
-        set(v) { sdk.zeroPowerBehavior = v.sdk }
 
     /**
      * Move the motor to a position
@@ -63,41 +35,15 @@ class Motor internal constructor(private val sdk: DcMotor) : BasicMotor(sdk) {
      *
      * @return @this
      */
-    fun move(power: Double, position: Double, wait: Boolean = true): Motor {
-        mode = Mode.Reset
-
-        targetPosition = (position * distanceConstant).toInt()
-
-        mode = Mode.Position
-        sdk.power = power
-
-        if (wait) {
-            while (busy)
-                Thread.sleep(1)
-
-            stop()
-        }
-
-        return this
-    }
-
-    fun move(power: Double, position: Double, callback: (Motor) -> Unit): Motor {
-        move(power, position)
-        callback.invoke(this)
-
-        return this
-    }
+    fun move(power: Double, position: Double, wait: Boolean = true): Motor
+    fun move(power: Double, position: Double, callback: (Motor) -> Unit): Motor
 
     /**
      * Stop the motor
      *
      * @return @this
      */
-    fun stop(): Motor {
-        sdk.power = 0.0
-
-        return this
-    }
+    fun stop(): Motor
 
     /**
      * The behavior of a motor when a power of zero is applied
@@ -161,9 +107,85 @@ class Motor internal constructor(private val sdk: DcMotor) : BasicMotor(sdk) {
         }
     }
 
-    companion object {
-        val sdk = DcMotor::class.java
+    open class Impl<T : SdkMotor>(val sdk: T) : Motor, BasicMotor by BasicMotor.Impl(sdk) {
+        private val ext: DcMotorEx?
+            get() = if (extended) sdk as DcMotorEx else null
 
+        override val busy: Boolean
+            get() = sdk.isBusy
+
+        override val controller = MotorController.Impl(sdk.controller)
+
+        override val extended: Boolean
+            get() = sdk is DcMotorEx
+
+        override var mode: Mode
+            get() = Mode.fromSdk(sdk.mode)
+            set(v) { sdk.mode = v.sdk }
+
+        override val port: Int
+            get() = sdk.portNumber
+
+        override var targetPosition: Int
+            get() = sdk.targetPosition
+            set(v) { sdk.targetPosition = v }
+
+        override var targetPositionTolerance: Int?
+            get() = ext?.targetPositionTolerance
+            set(v) { if (v != null) ext?.targetPositionTolerance = v }
+
+        override val position: Int
+            get() = sdk.currentPosition
+
+        override var velocity: Double?
+            get() = ext?.velocity
+            set(v) { if (v != null) ext?.velocity = v }
+
+        override var enabled: Boolean?
+            get() = ext?.isMotorEnabled
+            set(v) { if (v == true) ext?.setMotorEnable() else ext?.setMotorDisable() }
+
+        override var zeroPower: ZeroPowerBehavior
+            get() = ZeroPowerBehavior.fromSdk(sdk.zeroPowerBehavior)
+            set(v) { sdk.zeroPowerBehavior = v.sdk }
+
+        override fun move(power: Double, position: Double, wait: Boolean): Motor {
+            mode = Mode.Reset
+
+            targetPosition = (position * distanceConstant).toInt()
+
+            mode = Mode.Position
+            sdk.power = power
+
+            if (wait) {
+                while (busy)
+                    Thread.sleep(1)
+
+                stop()
+            }
+
+            return this
+        }
+
+        override fun move(power: Double, position: Double, callback: (Motor) -> Unit): Motor {
+            move(power, position)
+            callback.invoke(this)
+
+            return this
+        }
+
+        override fun stop(): Motor {
+            sdk.power = 0.0
+
+            return this
+        }
+
+        companion object {
+            val sdk = SdkMotor::class.java
+        }
+    }
+
+    companion object {
         /**
          * The ratio between a motor encoder step and a degree
          */

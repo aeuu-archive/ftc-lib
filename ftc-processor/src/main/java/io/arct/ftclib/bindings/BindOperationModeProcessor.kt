@@ -3,11 +3,16 @@ package io.arct.ftclib.bindings
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous
 import com.qualcomm.robotcore.eventloop.opmode.Disabled
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp
-import com.squareup.kotlinpoet.*
+import com.squareup.kotlinpoet.AnnotationSpec
+import com.squareup.kotlinpoet.FileSpec
+import com.squareup.kotlinpoet.KModifier
+import com.squareup.kotlinpoet.PropertySpec
+import com.squareup.kotlinpoet.TypeSpec
+import com.squareup.kotlinpoet.asTypeName
 import io.arct.ftclib.eventloop.LinearOperationMode
 import io.arct.ftclib.eventloop.OperationMode
 import java.io.File
-import java.util.*
+import java.util.Collections
 import javax.annotation.processing.AbstractProcessor
 import javax.annotation.processing.RoundEnvironment
 import javax.lang.model.SourceVersion
@@ -54,18 +59,13 @@ class BindOperationModeProcessor : AbstractProcessor() {
                     ).superclass(when (element.superclass.asTypeName()) {
                         OperationMode::class.asTypeName() -> OpModeBinding::class.asTypeName()
                         LinearOperationMode::class.asTypeName() -> LinearOpModeBinding::class.asTypeName()
-                        else -> return run { processingEnv.messager.printMessage(Diagnostic.Kind.ERROR, "$name is not an operation mode!") }
+                        else -> return run { processingEnv.messager.printMessage(Diagnostic.Kind.ERROR, "${element.simpleName} is not an operation mode!") }
                     }).addProperty(
-                        PropertySpec.builder("mode", element.superclass.asTypeName(), KModifier.OVERRIDE).initializer("$name(this)").build()
+                        PropertySpec.builder("mode", element.superclass.asTypeName(), KModifier.OVERRIDE).initializer("${OperationMode::class.asTypeName()}.of<$name>(this)").build()
                     ).build()
             ).build()
 
-        val dir = processingEnv.options["kapt.kotlin.generated"] ?: run {
-            processingEnv.messager.printMessage(Diagnostic.Kind.ERROR, "Can't find the target directory for generated Kotlin files.")
-
-            return
-        }
-
+        val dir = processingEnv.options["kapt.kotlin.generated"] ?: return processingEnv.messager.printMessage(Diagnostic.Kind.ERROR, "Can't find the target directory for generated Kotlin files.")
         val file = File(dir, fileName)
 
         file.parentFile.mkdirs()

@@ -1,33 +1,48 @@
 package io.arct.ftclib.hardware.sensor
 
+import io.arct.ftclib.bindings.types.SdkGyroSensor
 import io.arct.ftclib.hardware.Device
+import io.arct.ftclib.hardware.SdkDevice
 
-class GyroSensor internal constructor(private val sdk: com.qualcomm.robotcore.hardware.GyroSensor) : Device(sdk) {
+interface GyroSensor : Device {
     val calibrating: Boolean
-        get() = sdk.isCalibrating
-
     val heading: Int
-        get() = sdk.heading
-
     val rotationFraction: Double
-        get() = sdk.rotationFraction
 
     val x: Int
-        get() = sdk.rawX()
-
     val y: Int
-        get() = sdk.rawY()
-
     val z: Int
-        get() = sdk.rawZ()
 
-    fun calibrate() =
-        sdk.calibrate()
+    fun calibrate()
+    fun resetZ()
 
-    fun resetZ() =
-        sdk.resetZAxisIntegrator()
+    class Impl<T : SdkGyroSensor>(sdk: T) : GyroSensor, SdkDevice<T> by SdkDevice.Impl(sdk) {
+        override val calibrating: Boolean
+            get() = sdk.isCalibrating
 
-    companion object {
-        val sdk = com.qualcomm.robotcore.hardware.GyroSensor::class.java
+        override val heading: Int
+            get() = sdk.heading
+
+        override val rotationFraction: Double
+            get() = sdk.rotationFraction
+
+        override val x: Int
+            get() = sdk.rawX()
+
+        override val y: Int
+            get() = sdk.rawY()
+
+        override val z: Int
+            get() = sdk.rawZ()
+
+        override fun calibrate() =
+            sdk.calibrate()
+
+        override fun resetZ() =
+            sdk.resetZAxisIntegrator()
+
+        companion object {
+            val sdk = SdkGyroSensor::class.java
+        }
     }
 }

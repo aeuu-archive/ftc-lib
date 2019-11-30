@@ -1,0 +1,7 @@
+githubPages:
+  branch: 'gh-pages'
+  repo: 'ftc-lib'
+  username: 'arctfoxx'
+
+githubReleases:
+  repo: 'arctfoxx/ftc-lib'

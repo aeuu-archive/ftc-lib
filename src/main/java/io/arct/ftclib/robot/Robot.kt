@@ -10,7 +10,7 @@ import io.arct.ftclib.gamepad.Gamepad
  * @property gamepad The [Gamepad]s linked to the robot
  */
 class Robot internal constructor(private val sdk: OpMode) {
-    var map: HardwareMap = HardwareMap(sdk.hardwareMap)
+    var map: HardwareMap = HardwareMap(sdk)
     val gamepad: List<Gamepad>
         get() = listOf(Gamepad.from(sdk.gamepad1), Gamepad.from(sdk.gamepad2))
 }

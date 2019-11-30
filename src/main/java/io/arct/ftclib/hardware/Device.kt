@@ -10,28 +10,19 @@ import com.qualcomm.robotcore.hardware.HardwareDevice
  * @property manufacturer The manufacturer of the device
  * @property version The devices version number
  */
-abstract class Device internal constructor(private val sdk: HardwareDevice) {
-    val connectionInfo: String = sdk.connectionInfo
-    val name: String = sdk.deviceName
-    val manufacturer: Manufacturer = Manufacturer.fromSdk(sdk.manufacturer)
-    val version: Int = sdk.version
+interface Device {
+    val connectionInfo: String
+    val name: String
+    val manufacturer: Manufacturer
+    val version: Int
 
     /**
      * Close the device
      *
      * @return @this
      */
-    fun close(): Device {
-        sdk.close()
-
-        return this
-    }
-
-    fun reset(): Device {
-        sdk.resetDeviceConfigurationForOpMode()
-
-        return this
-    }
+    fun close(): Device
+    fun reset(): Device
 
     enum class Manufacturer {
         Adafruit,
@@ -76,9 +67,5 @@ abstract class Device internal constructor(private val sdk: HardwareDevice) {
                 else -> Unknown
             }
         }
-    }
-
-    companion object {
-        val sdk = HardwareDevice::class.java
     }
 }

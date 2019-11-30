@@ -9,16 +9,16 @@ import kotlin.math.cos
 import kotlin.math.sin
 
 /**
- * A drive controller for a robot using holonomic drive
+ * A drive controller for a robot using holonomic drive.
  *
- * @param robot The robot this controller is controlling
- * @param motors A [List] of motors in the holonomic drive array
+ * @param robot The robot this controller is controlling.
+ * @param motors A [List] of motors in the holonomic drive array.
  */
-class HolonomicDrive(robot: Robot, motors: List<String>) : Drive(robot) {
-    private val lfm: Motor = robot.map(motors[0])
-    private val rfm: Motor = robot.map(motors[1])
-    private val lbm: Motor = robot.map(motors[2])
-    private val rbm: Motor = robot.map(motors[3])
+class HolonomicDrive(override val robot: Robot, vararg motors: Motor) : Drive {
+    private val lfm: Motor = motors[0]
+    private val rfm: Motor = motors[1]
+    private val lbm: Motor = motors[2]
+    private val rbm: Motor = motors[3]
 
     init {
         lfm.zeroPower = Motor.ZeroPowerBehavior.Brake
@@ -80,10 +80,13 @@ class HolonomicDrive(robot: Robot, motors: List<String>) : Drive(robot) {
     /**
      * @see Drive
      */
-    override fun gamepad(gamepad: Gamepad): HolonomicDrive {
-        val x = gamepad.right.x
-        val y = gamepad.right.y
-        val r = gamepad.left.x
+    override fun gamepad(gamepad: Gamepad, invert: Boolean): HolonomicDrive {
+        val main = if (invert) gamepad.right else gamepad.left
+        val rotation = if (invert) gamepad.left else gamepad.right
+
+        val x = main.x
+        val y = main.y
+        val r = rotation.x
 
         lfm.power = (+y + x + r)
         rfm.power = (-y + x + r)
@@ -95,12 +98,12 @@ class HolonomicDrive(robot: Robot, motors: List<String>) : Drive(robot) {
 
     companion object {
         /**
-         * The ratio between a holonomic drive unit and a centimeter
+         * The ratio between a holonomic drive unit and a centimeter.
          */
         var distanceConstant = 1.0
 
         /**
-         * The ratio between a holonomic drive rotation unit and a degree
+         * The ratio between a holonomic drive rotation unit and a degree.
          */
         var rotationConstant = 1.0
     }

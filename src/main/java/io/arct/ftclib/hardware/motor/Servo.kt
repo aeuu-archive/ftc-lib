@@ -1,29 +1,27 @@
 package io.arct.ftclib.hardware.motor
 
+import io.arct.ftclib.bindings.types.SdkServo
 import io.arct.ftclib.hardware.Device
+import io.arct.ftclib.hardware.SdkDevice
 import io.arct.ftclib.hardware.controller.ServoController
 
 /**
  * A hardware servo
  */
-class Servo internal constructor(private val sdk: com.qualcomm.robotcore.hardware.Servo) : Device(sdk) {
-    val controller: ServoController =
-        ServoController(sdk.controller, sdk.portNumber)
+interface Servo : Device {
+    val controller: ServoController
+    var position: Double
 
-    /**
-     * Move the servo to a position
-     *
-     * @param position Position to move to
-     *
-     * @return @this
-     */
-    fun move(position: Double): Servo {
-        sdk.position = position
+    open class Impl<T : SdkServo>(sdk: T) : Servo, SdkDevice<T> by SdkDevice.Impl(sdk) {
+        override val controller: ServoController
+            get() = ServoController.Impl(sdk.controller)
 
-        return this
-    }
+        override var position: Double
+            get() = sdk.position
+            set(v) { sdk.position = v }
 
-    companion object {
-        val sdk = com.qualcomm.robotcore.hardware.Servo::class.java
+        companion object {
+            val sdk = SdkServo::class.java
+        }
     }
 }

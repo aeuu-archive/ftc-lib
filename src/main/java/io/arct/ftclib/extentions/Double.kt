@@ -15,6 +15,12 @@ fun Double.round(decimals: Int): Double {
     return round(this * multiplier).toInt() / multiplier
 }
 
-fun Double.map(x: Double, from: ClosedRange<Double>, to: ClosedRange<Double>): Double =
-    if (to.start <= to.endInclusive) (x - from.start) * (to.endInclusive - to.start) / (from.endInclusive - from.start) + to.start
-    else (to.endInclusive + to.start) - map(x, from, (to.endInclusive)..(to.start))
+fun Double.min(bound: Double): Double =
+    if (this < bound) bound else this
+
+fun Double.max(bound: Double): Double =
+    if (this > bound) bound else this
+
+fun Double.map(from: ClosedRange<Double>, to: ClosedRange<Double>): Double =
+    if (to.start <= to.endInclusive) (this - from.start) * (to.endInclusive - to.start) / (from.endInclusive - from.start) + to.start
+    else (to.endInclusive + to.start) - this.map(from, (to.endInclusive)..(to.start))

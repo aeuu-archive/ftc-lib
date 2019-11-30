@@ -1,0 +1,15 @@
+primaryColor: '#DE9149'
+
+social:
+  github: 'arctfoxx/ftc-lib'
+
+menu:
+  - type: 'separator'
+    title: 'Wiki'
+  - type: 'wiki'
+  - type: 'page'
+    itemId: 'Changelog'
+  - type: 'separator'
+    title: 'API Documentation'
+  - type: 'kotlindocPackages'
+  - type: 'kotlindocClasses'

@@ -41,7 +41,21 @@ class Telemetry internal constructor(private val sdk: org.firstinspires.ftc.robo
     /**
      * Update/Send queued telemetry data
      */
-    fun update() {
+    fun update(): Telemetry {
         sdk.update()
+
+        return this
+    }
+
+    fun clear(): Telemetry {
+        sdk.clear()
+
+        return this
+    }
+
+    fun clearAll(): Telemetry {
+        sdk.clearAll()
+
+        return this
     }
 }

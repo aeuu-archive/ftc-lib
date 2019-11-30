@@ -10,7 +10,7 @@ package io.arct.ftclib.gamepad
  *
  * @see Gamepad
  */
-class DPad internal constructor(
+data class DPad internal constructor(
     val up: Boolean,
     val down: Boolean,
     val left: Boolean,

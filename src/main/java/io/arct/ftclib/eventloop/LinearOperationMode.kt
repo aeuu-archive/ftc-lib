@@ -5,9 +5,15 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode
 /**
  * Represents an linear operation mode.
  *
+ * @property started Whether the operation mode is started.
+ * @property stopRequested Whether a stop has been requested.
+ * @property active Whether the operation mode is active currently.
+ *
  * @see OperationMode
  */
-abstract class LinearOperationMode(private val sdk: LinearOpMode) : OperationMode(sdk) {
+abstract class LinearOperationMode : OperationMode() {
+    private val sdk: LinearOpMode = curr!! as LinearOpMode
+
     val started: Boolean
         get() = sdk.isStarted
 
@@ -17,27 +23,37 @@ abstract class LinearOperationMode(private val sdk: LinearOpMode) : OperationMod
     val active: Boolean
         get() = sdk.opModeIsActive()
 
-    fun idle() = sdk.idle()
+    /**
+     * Tell the operation mode to idle for a bit.
+     *
+     * @return @this
+     */
+    fun idle(): LinearOperationMode {
+        sdk.idle()
 
-    fun sleep(ms: Long) = sdk.sleep(ms)
+        return this
+    }
 
     /**
-     * Code to execute when the operation mode is run
+     * Sleep for a specified amount of time.
+     *
+     * @param ms Time to wait in milliseconds
+     *
+     * @return @this
+     */
+    fun sleep(ms: Long): LinearOperationMode {
+        sdk.sleep(ms)
+
+        return this
+    }
+
+    /**
+     * Code to execute when the operation mode is run.
      */
     abstract fun run()
 
-    /**
-     * @suppress
-     */
-    final override fun init() {}
+    override fun init() {}
 
-    /**
-     * @suppress
-     */
-    final override fun initLoop() {}
-
-    /**
-     * @suppress
-     */
     final override fun loop() {}
+    final override fun initLoop() {}
 }

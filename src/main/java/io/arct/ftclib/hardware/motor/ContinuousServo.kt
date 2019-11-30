@@ -1,31 +1,45 @@
 package io.arct.ftclib.hardware.motor
 
-import com.qualcomm.robotcore.hardware.CRServo
+import io.arct.ftclib.bindings.types.SdkContinuousServo
 import io.arct.ftclib.hardware.controller.ServoController
 
 /**
  * A hardware continuous rotation servo
  */
-class ContinuousServo internal constructor(private val sdk: CRServo) : BasicMotor(sdk) {
-    val controller: ServoController = ServoController(sdk.controller, port)
-
+interface ContinuousServo : BasicMotor {
+    val controller: ServoController
     val port: Int
-        get() = sdk.portNumber
 
     /**
-     * Move the s a particular distance
+     * Move the continuous servo a particular distance
      *
      * @param distance The distance to move the continuous servo
      *
      * @return @this
      */
-    fun move(distance: Double): ContinuousServo {
-        sdk.controller.setServoPosition(port, sdk.controller.getServoPosition(port) + distance)
+    fun move(distance: Double): ContinuousServo
 
-        return this
-    }
+    open class Impl<T : SdkContinuousServo>(sdk: T) : ContinuousServo, BasicMotor.Impl<T>(sdk) {
+        override val controller: ServoController = ServoController.Impl(sdk.controller)
 
-    companion object {
-        val sdk = CRServo::class.java
+        override val port: Int
+            get() = sdk.portNumber
+
+        /**
+         * Move the s a particular distance
+         *
+         * @param distance The distance to move the continuous servo
+         *
+         * @return @this
+         */
+        override fun move(distance: Double): ContinuousServo {
+            sdk.controller.setServoPosition(port, sdk.controller.getServoPosition(port) + distance)
+
+            return this
+        }
+
+        companion object {
+            val sdk = SdkContinuousServo::class.java
+        }
     }
 }

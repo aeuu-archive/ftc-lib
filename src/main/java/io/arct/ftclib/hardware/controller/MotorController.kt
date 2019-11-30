@@ -1,6 +1,13 @@
 package io.arct.ftclib.hardware.controller
 
-import com.qualcomm.robotcore.hardware.DcMotorController
+import io.arct.ftclib.bindings.types.SdkMotorController
 import io.arct.ftclib.hardware.Device
+import io.arct.ftclib.hardware.SdkDevice
 
-class MotorController internal constructor(private val sdk: DcMotorController, private val port: Int) : Device(sdk)
+interface MotorController : Device {
+    class Impl<T : SdkMotorController>(sdk: T) : MotorController, SdkDevice<T> by SdkDevice.Impl(sdk) {
+        companion object {
+            val sdk = SdkMotorController::class.java
+        }
+    }
+}
