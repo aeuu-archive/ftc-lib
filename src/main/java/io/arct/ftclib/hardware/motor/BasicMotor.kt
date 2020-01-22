@@ -20,27 +20,14 @@ interface BasicMotor : Device {
                 Reverse -> Forward
                 else -> this
             }
-
-        internal val sdk: DcMotorSimple.Direction?
-            get() = when (this) {
-                Forward -> DcMotorSimple.Direction.FORWARD
-                Reverse -> DcMotorSimple.Direction.REVERSE
-                else -> null
-            }
-
-        companion object {
-            internal fun fromSdk(value: DcMotorSimple.Direction): Direction = when (value) {
-                DcMotorSimple.Direction.FORWARD -> Forward
-                DcMotorSimple.Direction.REVERSE -> Reverse
-                else -> Unknown
-            }
-        }
     }
 
     open class Impl<T : SdkBasicMotor>(sdk: T) : BasicMotor, SdkDevice<T> by SdkDevice.Impl(sdk) {
         override var direction: Direction
-            get() = Direction.fromSdk(sdk.direction)
-            set(v) { sdk.direction = v.sdk }
+            get() = fromSdk(sdk.direction)
+            set(v) {
+                sdk.direction = toSdk(v)
+            }
 
         override var power: Double
             get() = sdk.power
@@ -48,6 +35,18 @@ interface BasicMotor : Device {
 
         companion object {
             val sdk = SdkBasicMotor::class.java
+
+            private fun fromSdk(value: DcMotorSimple.Direction): Direction = when (value) {
+                DcMotorSimple.Direction.FORWARD -> Direction.Forward
+                DcMotorSimple.Direction.REVERSE -> Direction.Reverse
+                else -> Direction.Unknown
+            }
+
+            private fun toSdk(value: Direction): DcMotorSimple.Direction? = when (value) {
+                Direction.Forward -> DcMotorSimple.Direction.FORWARD
+                Direction.Reverse -> DcMotorSimple.Direction.REVERSE
+                else -> null
+            }
         }
     }
 }

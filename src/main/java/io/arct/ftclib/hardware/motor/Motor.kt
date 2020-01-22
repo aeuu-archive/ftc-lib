@@ -63,21 +63,6 @@ interface Motor : BasicMotor {
          * Behavior is unknown
          */
         Unknown;
-
-        internal val sdk: DcMotor.ZeroPowerBehavior
-            get() = when (this) {
-                Brake -> DcMotor.ZeroPowerBehavior.BRAKE
-                Coast -> DcMotor.ZeroPowerBehavior.FLOAT
-                else -> DcMotor.ZeroPowerBehavior.UNKNOWN
-            }
-
-        companion object {
-            internal fun fromSdk(value: DcMotor.ZeroPowerBehavior): ZeroPowerBehavior = when (value) {
-                DcMotor.ZeroPowerBehavior.BRAKE -> Brake
-                DcMotor.ZeroPowerBehavior.FLOAT -> Coast
-                else -> Unknown
-            }
-        }
     }
 
     enum class Mode {
@@ -86,25 +71,6 @@ interface Motor : BasicMotor {
         Simple,
         Reset,
         Unknown;
-
-        internal val sdk: DcMotor.RunMode?
-            get() = when (this) {
-                Position -> DcMotor.RunMode.RUN_TO_POSITION
-                Encoder -> DcMotor.RunMode.RUN_USING_ENCODER
-                Simple -> DcMotor.RunMode.RUN_WITHOUT_ENCODER
-                Reset -> DcMotor.RunMode.STOP_AND_RESET_ENCODER
-                else -> null
-            }
-
-        companion object {
-            internal fun fromSdk(value: DcMotor.RunMode): Mode = when (value) {
-                DcMotor.RunMode.RUN_TO_POSITION -> Position
-                DcMotor.RunMode.RUN_USING_ENCODER -> Encoder
-                DcMotor.RunMode.RUN_WITHOUT_ENCODER -> Simple
-                DcMotor.RunMode.STOP_AND_RESET_ENCODER -> Reset
-                else -> Unknown
-            }
-        }
     }
 
     open class Impl<T : SdkMotor>(val sdk: T) : Motor, BasicMotor by BasicMotor.Impl(sdk) {
@@ -120,8 +86,10 @@ interface Motor : BasicMotor {
             get() = sdk is DcMotorEx
 
         override var mode: Mode
-            get() = Mode.fromSdk(sdk.mode)
-            set(v) { sdk.mode = v.sdk }
+            get() = fromSdk(sdk.mode)
+            set(v) {
+                sdk.mode = toSdk(v)
+            }
 
         override val port: Int
             get() = sdk.portNumber
@@ -146,8 +114,10 @@ interface Motor : BasicMotor {
             set(v) { if (v == true) ext?.setMotorEnable() else ext?.setMotorDisable() }
 
         override var zeroPower: ZeroPowerBehavior
-            get() = ZeroPowerBehavior.fromSdk(sdk.zeroPowerBehavior)
-            set(v) { sdk.zeroPowerBehavior = v.sdk }
+            get() = fromSdk(sdk.zeroPowerBehavior)
+            set(v) {
+                sdk.zeroPowerBehavior = toSdk(v)
+            }
 
         override fun move(power: Double, position: Double, wait: Boolean): Motor {
             mode = Mode.Reset
@@ -182,6 +152,34 @@ interface Motor : BasicMotor {
 
         companion object {
             val sdk = SdkMotor::class.java
+
+            private fun fromSdk(value: DcMotor.RunMode): Mode = when (value) {
+                DcMotor.RunMode.RUN_TO_POSITION -> Mode.Position
+                DcMotor.RunMode.RUN_USING_ENCODER -> Mode.Encoder
+                DcMotor.RunMode.RUN_WITHOUT_ENCODER -> Mode.Simple
+                DcMotor.RunMode.STOP_AND_RESET_ENCODER -> Mode.Reset
+                else -> Mode.Unknown
+            }
+
+            private fun toSdk(value: Mode): DcMotor.RunMode? = when (value) {
+                Mode.Position -> DcMotor.RunMode.RUN_TO_POSITION
+                Mode.Encoder -> DcMotor.RunMode.RUN_USING_ENCODER
+                Mode.Simple -> DcMotor.RunMode.RUN_WITHOUT_ENCODER
+                Mode.Reset -> DcMotor.RunMode.STOP_AND_RESET_ENCODER
+                else -> null
+            }
+
+            private fun fromSdk(value: DcMotor.ZeroPowerBehavior): ZeroPowerBehavior = when (value) {
+                DcMotor.ZeroPowerBehavior.BRAKE -> ZeroPowerBehavior.Brake
+                DcMotor.ZeroPowerBehavior.FLOAT -> ZeroPowerBehavior.Coast
+                else -> ZeroPowerBehavior.Unknown
+            }
+
+            private fun toSdk(value: ZeroPowerBehavior): DcMotor.ZeroPowerBehavior = when (value) {
+                ZeroPowerBehavior.Brake -> DcMotor.ZeroPowerBehavior.BRAKE
+                ZeroPowerBehavior.Coast -> DcMotor.ZeroPowerBehavior.FLOAT
+                else -> DcMotor.ZeroPowerBehavior.UNKNOWN
+            }
         }
     }
 

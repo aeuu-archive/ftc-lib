@@ -20,13 +20,20 @@ interface ContinuousServo : BasicMotor {
     fun move(distance: Double): ContinuousServo
 
     open class Impl<T : SdkContinuousServo>(sdk: T) : ContinuousServo, BasicMotor.Impl<T>(sdk) {
+
         override val controller: ServoController = ServoController.Impl(sdk.controller)
 
         override val port: Int
             get() = sdk.portNumber
 
+        override var power: Double
+            get() = sdk.power
+            set(v) {
+                sdk.power = v
+            }
+
         /**
-         * Move the s a particular distance
+         * Move the servo a particular distance
          *
          * @param distance The distance to move the continuous servo
          *

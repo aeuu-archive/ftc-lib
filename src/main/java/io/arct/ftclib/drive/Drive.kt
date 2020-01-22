@@ -21,9 +21,9 @@ interface Drive {
      *
      * @return @this
      */
-    fun move(direction: Double, power: Double, distance: Double? = null): Drive
+    fun move(direction: Double, power: Double, distance: Double? = null, turn: Double = 0.0): Drive
 
-    fun move(direction: Direction, power: Double, distance: Double? = null) =
+    fun move(direction: Direction, power: Double, distance: Double? = null, turn: Double = 0.0) =
         move(direction.value, power, distance)
 
     /**

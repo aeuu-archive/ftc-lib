@@ -5,7 +5,6 @@ import io.arct.ftclib.gamepad.Gamepad
 import io.arct.ftclib.hardware.motor.Motor
 import io.arct.ftclib.robot.Robot
 import io.arct.ftclib.util.Angles
-import io.arct.ftclib.util.Direction
 import kotlin.math.hypot
 
 /**
@@ -33,34 +32,41 @@ class MecanumDrive(override val robot: Robot, vararg motors: Motor, private var 
     /**
      * @see Drive
      */
-    override fun move(direction: Double, power: Double, distance: Double?): MecanumDrive = if (distance != null) {
-        val dir = direction + if (fieldCentric) rotation!!().toDouble() else 0.0
+    override fun move(direction: Double, power: Double, distance: Double?, turn: Double): MecanumDrive =
+        if (distance != null) {
+            val dir = direction + if (fieldCentric) rotation!!().toDouble() else 0.0
 
-        val a = speed(-dir + 90)
-        val b = speed(-dir)
+            val a = speed(-dir + 90)
+            val b = speed(-dir)
 
-        lfm.move(a * power, distance * distanceConstant, wait = false)
-        rfm.move(b * power, distance * distanceConstant, wait = false)
-        lbm.move(b * power, distance * distanceConstant, wait = false)
-        rbm.move(a * power, distance * distanceConstant, wait = false)
+            val leftOffset = if (turn <= 0) -turn else 0.0
+            val rightOffset = if (turn >= 0) turn else 0.0
 
-        while (lfm.busy || rfm.busy || lbm.busy || rbm.busy)
-            Thread.sleep(1)
+            lfm.move((a * power) - leftOffset, distance * distanceConstant, wait = false)
+            rfm.move((b * power) - rightOffset, distance * distanceConstant, wait = false)
+            lbm.move((b * power) - leftOffset, distance * distanceConstant, wait = false)
+            rbm.move((a * power) - rightOffset, distance * distanceConstant, wait = false)
 
-        this
-    } else {
-        val dir = direction + if (fieldCentric) rotation!!().toDouble() else 0.0
+            while (lfm.busy || rfm.busy || lbm.busy || rbm.busy)
+                Thread.sleep(1)
 
-        val a = speed(-dir + 90)
-        val b = speed(-dir)
+            this
+        } else {
+            val dir = direction + if (fieldCentric) rotation!!().toDouble() else 0.0
 
-        lfm.power = a * power
-        rfm.power = b * power
-        lbm.power = b * power
-        rbm.power = a * power
+            val a = speed(-dir + 90)
+            val b = speed(-dir)
 
-        this
-    }
+            val leftOffset = if (turn <= 0) -turn else 0.0
+            val rightOffset = if (turn >= 0) turn else 0.0
+
+            lfm.power = (a * power) - leftOffset
+            rfm.power = (b * power) - rightOffset
+            lbm.power = (b * power) - leftOffset
+            rbm.power = (a * power) - rightOffset
+
+            this
+        }
 
     /**
      * @see Drive
@@ -89,30 +95,41 @@ class MecanumDrive(override val robot: Robot, vararg motors: Motor, private var 
      */
     override fun gamepad(gamepad: Gamepad, invert: Boolean): MecanumDrive {
         val main = if (invert) gamepad.right else gamepad.left
-        val rotation = if (invert) gamepad.left else gamepad.right
+        val precision = if (invert) gamepad.left else gamepad.right
 
-        if (gamepad.dpad.up || gamepad.dpad.down || gamepad.dpad.left || gamepad.dpad.right) {
-            move(when {
-                gamepad.dpad.up -> Direction.Forward
-                gamepad.dpad.down -> Direction.Backward
-                gamepad.dpad.left -> Direction.Left
-                gamepad.dpad.right -> Direction.Right
+        return when {
+            gamepad.a || gamepad.b || gamepad.x || gamepad.y ->
+                rotate(
+                    when {
+                        gamepad.y -> 0.0
+                        gamepad.b -> 90.0
+                        gamepad.a -> 180.0
+                        gamepad.x -> -80.0
+                        else -> 0.0
+                    } - Angles.normalizeAngle(rotation!!().toDouble()), 0.35
+                )
 
-                else -> return this
-            }, 0.2)
+            gamepad.lt - gamepad.rt != 0.0 && (main.x != 0.0 || main.y != 0.0) ->
+                rotate((gamepad.lt - gamepad.rt).map(-1.0..1.0, -0.5..0.5))
 
-            return this
+            gamepad.lb ->
+                rotate(0.25)
+
+            gamepad.rb ->
+                rotate(-0.25)
+
+            gamepad.lt - gamepad.rt != 0.0 ->
+                rotate(gamepad.lt - gamepad.rt)
+
+            precision.x != 0.0 || precision.y != 0.0 ->
+                move(
+                    Angles.fromCoordinates(precision.x, precision.y),
+                    hypot(precision.x, precision.y).map(0.0..1.0, 0.0..0.3)
+                )
+
+            else ->
+                move(Angles.fromCoordinates(main.x, main.y), hypot(main.x, main.y))
         }
-
-        if (rotation.x == 0.0) {
-            move(Angles.fromCoordinates(main.x, main.y), hypot(main.x, main.y))
-
-            return this
-        }
-
-        rotate(rotation.x)
-
-        return this
     }
 
     private fun speed(angle: Double): Double {

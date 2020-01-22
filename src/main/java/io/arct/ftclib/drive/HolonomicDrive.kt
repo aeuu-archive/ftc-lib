@@ -30,30 +30,31 @@ class HolonomicDrive(override val robot: Robot, vararg motors: Motor) : Drive {
     /**
      * @see Drive
      */
-    override fun move(direction: Double, power: Double, distance: Double?): HolonomicDrive = if (distance != null) {
-        val x = sin(direction * PI / 180).round(14)
-        val y = cos(direction * PI / 180).round(14)
+    override fun move(direction: Double, power: Double, distance: Double?, turn: Double): HolonomicDrive =
+        if (distance != null) {
+            val x = sin(direction * PI / 180).round(14)
+            val y = cos(direction * PI / 180).round(14)
 
-        lfm.move((+y + x) * power, distance * distanceConstant, wait = false)
-        rfm.move((-y + x) * power, distance * distanceConstant, wait = false)
-        lbm.move((+y - x) * power, distance * distanceConstant, wait = false)
-        rbm.move((-y - x) * power, distance * distanceConstant, wait = false)
+            lfm.move((+y + x) * power, distance * distanceConstant, wait = false)
+            rfm.move((-y + x) * power, distance * distanceConstant, wait = false)
+            lbm.move((+y - x) * power, distance * distanceConstant, wait = false)
+            rbm.move((-y - x) * power, distance * distanceConstant, wait = false)
 
-        while (lfm.busy || rfm.busy || lbm.busy || rbm.busy)
-            Thread.sleep(1)
+            while (lfm.busy || rfm.busy || lbm.busy || rbm.busy)
+                Thread.sleep(1)
 
-        this
-    } else {
-        val x = sin(direction * PI / 180).round(14)
-        val y = cos(direction * PI / 180).round(14)
+            this
+        } else {
+            val x = sin(direction * PI / 180).round(14)
+            val y = cos(direction * PI / 180).round(14)
 
-        lfm.power = (+y + x) * power
-        rfm.power = (-y + x) * power
-        lbm.power = (+y - x) * power
-        rbm.power = (-y - x) * power
+            lfm.power = (+y + x) * power
+            rfm.power = (-y + x) * power
+            lbm.power = (+y - x) * power
+            rbm.power = (-y - x) * power
 
-        this
-    }
+            this
+        }
 
     /**
      * @see Drive
